@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,13 +21,69 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" prompt="Lookup Symbol or Company Name" translatesAutoresizingMaskIntoConstraints="NO" id="dEY-bZ-TVQ">
+                                <rect key="frame" x="0.0" y="20" width="320" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="dmS-GX-fKm"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="jZh-cH-32h"/>
+                                </connections>
+                            </searchBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WKT-gR-HI2">
+                                <rect key="frame" x="16" y="111" width="288" height="392"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symbol: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDf-3V-mWU" userLabel="Symbol">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="130.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6QC-Qn-sT2" userLabel="Company Name">
+                                        <rect key="frame" x="0.0" y="130.5" width="288" height="131"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAy-1P-n8n" userLabel="Exchange">
+                                        <rect key="frame" x="0.0" y="261.5" width="288" height="130.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FDh-ha-5rs">
+                                <rect key="frame" x="142" y="266" width="37" height="37"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dEY-bZ-TVQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2lu-Jq-8Hz"/>
+                            <constraint firstItem="WKT-gR-HI2" firstAttribute="top" secondItem="dEY-bZ-TVQ" secondAttribute="bottom" constant="16" id="HFj-8z-ez9"/>
+                            <constraint firstItem="dEY-bZ-TVQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Iuy-GB-A6S"/>
+                            <constraint firstAttribute="trailing" secondItem="dEY-bZ-TVQ" secondAttribute="trailing" id="JYE-Ww-Wst"/>
+                            <constraint firstItem="FDh-ha-5rs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Mye-Ll-mdO"/>
+                            <constraint firstItem="FDh-ha-5rs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="OXG-HE-Fqt"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="WKT-gR-HI2" secondAttribute="leading" id="Wac-Gx-bCe"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WKT-gR-HI2" secondAttribute="bottom" constant="16" id="jnn-Zq-ntT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WKT-gR-HI2" secondAttribute="trailing" id="xht-Tz-sCQ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="rL2-00-oqb"/>
+                    <connections>
+                        <outlet property="companyNameLbl" destination="6QC-Qn-sT2" id="5f6-mT-GOc"/>
+                        <outlet property="exchangeLbl" destination="jAy-1P-n8n" id="S2D-js-3SN"/>
+                        <outlet property="spinner" destination="FDh-ha-5rs" id="a04-rl-bgX"/>
+                        <outlet property="symbolLbl" destination="DDf-3V-mWU" id="JKd-ID-O5Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="150" y="134"/>
+            <point key="canvasLocation" x="150" y="133.09859154929578"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="lIe-HD-Uxh">

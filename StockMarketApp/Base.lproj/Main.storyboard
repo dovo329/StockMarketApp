@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vek-nr-Lhv">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Lookup View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LookupViewController" customModule="StockMarketApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="rL2-00-oqb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="150" y="134"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="lIe-HD-Uxh">
+            <objects>
+                <tabBarController id="vek-nr-Lhv" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="QQZ-24-Aas">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="NTt-E4-p7m"/>
+                        <segue destination="2gF-tz-Fwb" kind="relationship" relationship="viewControllers" id="GBn-SS-cy3"/>
+                        <segue destination="A9a-5U-d3Q" kind="relationship" relationship="viewControllers" id="wnB-tm-zhh"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AQK-pw-Dcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-853" y="133"/>
+        </scene>
+        <!--Quote-->
+        <scene sceneID="8dD-jn-dA1">
+            <objects>
+                <viewController id="2gF-tz-Fwb" customClass="ChartViewController" customModule="StockMarketApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="br1-Xh-08B"/>
+                        <viewControllerLayoutGuide type="bottom" id="tRf-QI-08f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VDd-Qq-E2Z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Quote" image="Message" id="958-Fh-8un"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yya-ZC-6mD" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="150" y="912"/>
+        </scene>
+        <!--Chart-->
+        <scene sceneID="ABe-tH-O7T">
+            <objects>
+                <viewController id="A9a-5U-d3Q" customClass="QuoteViewController" customModule="StockMarketApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VdH-z1-Lmf"/>
+                        <viewControllerLayoutGuide type="bottom" id="JRb-me-qty"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="puf-ML-Ude">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Chart" image="graphIcon" id="pGi-qr-TV6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZ1-PN-VzG" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="150" y="1692"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Message" width="23" height="20"/>
+        <image name="graphIcon" width="25" height="24"/>
+    </resources>
+</document>

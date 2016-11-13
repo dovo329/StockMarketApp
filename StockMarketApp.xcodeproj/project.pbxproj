@@ -1,0 +1,724 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		67A41CCA02E3B02AA386880A /* Pods_StockMarketAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049BCE5B899DF1BF3B9C3A06 /* Pods_StockMarketAppTests.framework */; };
+		9D4FCEE05A1E06419B6E6AD2 /* Pods_StockMarketAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF45DE539FE4A877C134F69 /* Pods_StockMarketAppUITests.framework */; };
+		A5DD634F1DD8062C009B32B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD634E1DD8062C009B32B6 /* AppDelegate.swift */; };
+		A5DD63541DD8062C009B32B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5DD63521DD8062C009B32B6 /* Main.storyboard */; };
+		A5DD63561DD8062C009B32B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5DD63551DD8062C009B32B6 /* Assets.xcassets */; };
+		A5DD63591DD8062C009B32B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5DD63571DD8062C009B32B6 /* LaunchScreen.storyboard */; };
+		A5DD63641DD8062C009B32B6 /* StockMarketAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD63631DD8062C009B32B6 /* StockMarketAppTests.swift */; };
+		A5DD636F1DD8062C009B32B6 /* StockMarketAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD636E1DD8062C009B32B6 /* StockMarketAppUITests.swift */; };
+		A5DD637D1DD8066A009B32B6 /* LookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD637C1DD8066A009B32B6 /* LookupViewController.swift */; };
+		A5DD63801DD8068E009B32B6 /* QuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD637F1DD8068E009B32B6 /* QuoteViewController.swift */; };
+		A5DD63821DD8069B009B32B6 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD63811DD8069B009B32B6 /* ChartViewController.swift */; };
+		DCD7AE72D480424545F82376 /* Pods_StockMarketApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA603F441F5CEE65CA26CBBA /* Pods_StockMarketApp.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A5DD63601DD8062C009B32B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5DD63431DD8062C009B32B6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5DD634A1DD8062C009B32B6;
+			remoteInfo = StockMarketApp;
+		};
+		A5DD636B1DD8062C009B32B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5DD63431DD8062C009B32B6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5DD634A1DD8062C009B32B6;
+			remoteInfo = StockMarketApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		049BCE5B899DF1BF3B9C3A06 /* Pods_StockMarketAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StockMarketAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CF45DE539FE4A877C134F69 /* Pods_StockMarketAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StockMarketAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18CF666633576DAA8B13E63D /* Pods-StockMarketAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketAppTests/Pods-StockMarketAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		29A1F1972CAF7C4D3C5EFADA /* Pods-StockMarketAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketAppTests/Pods-StockMarketAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		529843FBB681A0C87A75A3DB /* Pods-StockMarketApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketApp/Pods-StockMarketApp.release.xcconfig"; sourceTree = "<group>"; };
+		90787A102D679984CBE492F9 /* Pods-StockMarketAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketAppUITests/Pods-StockMarketAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A5DD634B1DD8062C009B32B6 /* StockMarketApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockMarketApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5DD634E1DD8062C009B32B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A5DD63531DD8062C009B32B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A5DD63551DD8062C009B32B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5DD63581DD8062C009B32B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A5DD635A1DD8062C009B32B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5DD635F1DD8062C009B32B6 /* StockMarketAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockMarketAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5DD63631DD8062C009B32B6 /* StockMarketAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMarketAppTests.swift; sourceTree = "<group>"; };
+		A5DD63651DD8062C009B32B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5DD636A1DD8062C009B32B6 /* StockMarketAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockMarketAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5DD636E1DD8062C009B32B6 /* StockMarketAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMarketAppUITests.swift; sourceTree = "<group>"; };
+		A5DD63701DD8062C009B32B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5DD637C1DD8066A009B32B6 /* LookupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookupViewController.swift; sourceTree = "<group>"; };
+		A5DD637F1DD8068E009B32B6 /* QuoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewController.swift; sourceTree = "<group>"; };
+		A5DD63811DD8069B009B32B6 /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		AA603F441F5CEE65CA26CBBA /* Pods_StockMarketApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StockMarketApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5DF4400A6E38242E6AD3088 /* Pods-StockMarketApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketApp/Pods-StockMarketApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F19B1A8EFD0D0F456A272D38 /* Pods-StockMarketAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketAppUITests/Pods-StockMarketAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A5DD63481DD8062C009B32B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCD7AE72D480424545F82376 /* Pods_StockMarketApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5DD635C1DD8062C009B32B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67A41CCA02E3B02AA386880A /* Pods_StockMarketAppTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5DD63671DD8062C009B32B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D4FCEE05A1E06419B6E6AD2 /* Pods_StockMarketAppUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		02FBD8BA69606379138D6315 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D5DF4400A6E38242E6AD3088 /* Pods-StockMarketApp.debug.xcconfig */,
+				529843FBB681A0C87A75A3DB /* Pods-StockMarketApp.release.xcconfig */,
+				18CF666633576DAA8B13E63D /* Pods-StockMarketAppTests.debug.xcconfig */,
+				29A1F1972CAF7C4D3C5EFADA /* Pods-StockMarketAppTests.release.xcconfig */,
+				90787A102D679984CBE492F9 /* Pods-StockMarketAppUITests.debug.xcconfig */,
+				F19B1A8EFD0D0F456A272D38 /* Pods-StockMarketAppUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7C3EC09ED7676931A395A75D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA603F441F5CEE65CA26CBBA /* Pods_StockMarketApp.framework */,
+				049BCE5B899DF1BF3B9C3A06 /* Pods_StockMarketAppTests.framework */,
+				0CF45DE539FE4A877C134F69 /* Pods_StockMarketAppUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A5DD63421DD8062C009B32B6 = {
+			isa = PBXGroup;
+			children = (
+				A5DD634D1DD8062C009B32B6 /* StockMarketApp */,
+				A5DD63621DD8062C009B32B6 /* StockMarketAppTests */,
+				A5DD636D1DD8062C009B32B6 /* StockMarketAppUITests */,
+				A5DD634C1DD8062C009B32B6 /* Products */,
+				02FBD8BA69606379138D6315 /* Pods */,
+				7C3EC09ED7676931A395A75D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A5DD634C1DD8062C009B32B6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5DD634B1DD8062C009B32B6 /* StockMarketApp.app */,
+				A5DD635F1DD8062C009B32B6 /* StockMarketAppTests.xctest */,
+				A5DD636A1DD8062C009B32B6 /* StockMarketAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5DD634D1DD8062C009B32B6 /* StockMarketApp */ = {
+			isa = PBXGroup;
+			children = (
+				A5DD634E1DD8062C009B32B6 /* AppDelegate.swift */,
+				A5DD637E1DD80670009B32B6 /* VCs */,
+				A5DD63521DD8062C009B32B6 /* Main.storyboard */,
+				A5DD63551DD8062C009B32B6 /* Assets.xcassets */,
+				A5DD63571DD8062C009B32B6 /* LaunchScreen.storyboard */,
+				A5DD635A1DD8062C009B32B6 /* Info.plist */,
+			);
+			path = StockMarketApp;
+			sourceTree = "<group>";
+		};
+		A5DD63621DD8062C009B32B6 /* StockMarketAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				A5DD63631DD8062C009B32B6 /* StockMarketAppTests.swift */,
+				A5DD63651DD8062C009B32B6 /* Info.plist */,
+			);
+			path = StockMarketAppTests;
+			sourceTree = "<group>";
+		};
+		A5DD636D1DD8062C009B32B6 /* StockMarketAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A5DD636E1DD8062C009B32B6 /* StockMarketAppUITests.swift */,
+				A5DD63701DD8062C009B32B6 /* Info.plist */,
+			);
+			path = StockMarketAppUITests;
+			sourceTree = "<group>";
+		};
+		A5DD637E1DD80670009B32B6 /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				A5DD637C1DD8066A009B32B6 /* LookupViewController.swift */,
+				A5DD63811DD8069B009B32B6 /* ChartViewController.swift */,
+				A5DD637F1DD8068E009B32B6 /* QuoteViewController.swift */,
+			);
+			name = VCs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A5DD634A1DD8062C009B32B6 /* StockMarketApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5DD63731DD8062C009B32B6 /* Build configuration list for PBXNativeTarget "StockMarketApp" */;
+			buildPhases = (
+				576AC9E08E7FD320B79B7C1C /* [CP] Check Pods Manifest.lock */,
+				A5DD63471DD8062C009B32B6 /* Sources */,
+				A5DD63481DD8062C009B32B6 /* Frameworks */,
+				A5DD63491DD8062C009B32B6 /* Resources */,
+				1131E8872EAB331241423029 /* [CP] Embed Pods Frameworks */,
+				A85B44B91F10189001E9FDEE /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StockMarketApp;
+			productName = StockMarketApp;
+			productReference = A5DD634B1DD8062C009B32B6 /* StockMarketApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A5DD635E1DD8062C009B32B6 /* StockMarketAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5DD63761DD8062C009B32B6 /* Build configuration list for PBXNativeTarget "StockMarketAppTests" */;
+			buildPhases = (
+				FFE9A7D75140E5FFE341EB9C /* [CP] Check Pods Manifest.lock */,
+				A5DD635B1DD8062C009B32B6 /* Sources */,
+				A5DD635C1DD8062C009B32B6 /* Frameworks */,
+				A5DD635D1DD8062C009B32B6 /* Resources */,
+				E188231F91A7CFDDE789459B /* [CP] Embed Pods Frameworks */,
+				1DC1F6EE4D7C27ACC41E3062 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A5DD63611DD8062C009B32B6 /* PBXTargetDependency */,
+			);
+			name = StockMarketAppTests;
+			productName = StockMarketAppTests;
+			productReference = A5DD635F1DD8062C009B32B6 /* StockMarketAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A5DD63691DD8062C009B32B6 /* StockMarketAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5DD63791DD8062C009B32B6 /* Build configuration list for PBXNativeTarget "StockMarketAppUITests" */;
+			buildPhases = (
+				8339BC8EB422D48D61371EF4 /* [CP] Check Pods Manifest.lock */,
+				A5DD63661DD8062C009B32B6 /* Sources */,
+				A5DD63671DD8062C009B32B6 /* Frameworks */,
+				A5DD63681DD8062C009B32B6 /* Resources */,
+				905F34623C8B3A27A9C74FB2 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A5DD636C1DD8062C009B32B6 /* PBXTargetDependency */,
+			);
+			name = StockMarketAppUITests;
+			productName = StockMarketAppUITests;
+			productReference = A5DD636A1DD8062C009B32B6 /* StockMarketAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A5DD63431DD8062C009B32B6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = VossWareLLC;
+				TargetAttributes = {
+					A5DD634A1DD8062C009B32B6 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					A5DD635E1DD8062C009B32B6 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A5DD634A1DD8062C009B32B6;
+					};
+					A5DD63691DD8062C009B32B6 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A5DD634A1DD8062C009B32B6;
+					};
+				};
+			};
+			buildConfigurationList = A5DD63461DD8062C009B32B6 /* Build configuration list for PBXProject "StockMarketApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A5DD63421DD8062C009B32B6;
+			productRefGroup = A5DD634C1DD8062C009B32B6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A5DD634A1DD8062C009B32B6 /* StockMarketApp */,
+				A5DD635E1DD8062C009B32B6 /* StockMarketAppTests */,
+				A5DD63691DD8062C009B32B6 /* StockMarketAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A5DD63491DD8062C009B32B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5DD63591DD8062C009B32B6 /* LaunchScreen.storyboard in Resources */,
+				A5DD63561DD8062C009B32B6 /* Assets.xcassets in Resources */,
+				A5DD63541DD8062C009B32B6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5DD635D1DD8062C009B32B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5DD63681DD8062C009B32B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1131E8872EAB331241423029 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StockMarketApp/Pods-StockMarketApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1DC1F6EE4D7C27ACC41E3062 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StockMarketAppTests/Pods-StockMarketAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		576AC9E08E7FD320B79B7C1C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8339BC8EB422D48D61371EF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		905F34623C8B3A27A9C74FB2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StockMarketAppUITests/Pods-StockMarketAppUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A85B44B91F10189001E9FDEE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StockMarketApp/Pods-StockMarketApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E188231F91A7CFDDE789459B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StockMarketAppTests/Pods-StockMarketAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFE9A7D75140E5FFE341EB9C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A5DD63471DD8062C009B32B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5DD63801DD8068E009B32B6 /* QuoteViewController.swift in Sources */,
+				A5DD63821DD8069B009B32B6 /* ChartViewController.swift in Sources */,
+				A5DD637D1DD8066A009B32B6 /* LookupViewController.swift in Sources */,
+				A5DD634F1DD8062C009B32B6 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5DD635B1DD8062C009B32B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5DD63641DD8062C009B32B6 /* StockMarketAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5DD63661DD8062C009B32B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5DD636F1DD8062C009B32B6 /* StockMarketAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A5DD63611DD8062C009B32B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A5DD634A1DD8062C009B32B6 /* StockMarketApp */;
+			targetProxy = A5DD63601DD8062C009B32B6 /* PBXContainerItemProxy */;
+		};
+		A5DD636C1DD8062C009B32B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A5DD634A1DD8062C009B32B6 /* StockMarketApp */;
+			targetProxy = A5DD636B1DD8062C009B32B6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A5DD63521DD8062C009B32B6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5DD63531DD8062C009B32B6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A5DD63571DD8062C009B32B6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5DD63581DD8062C009B32B6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A5DD63711DD8062C009B32B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A5DD63721DD8062C009B32B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A5DD63741DD8062C009B32B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5DF4400A6E38242E6AD3088 /* Pods-StockMarketApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = StockMarketApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vosswarellc.ios.StockMarketApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A5DD63751DD8062C009B32B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 529843FBB681A0C87A75A3DB /* Pods-StockMarketApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = StockMarketApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vosswarellc.ios.StockMarketApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		A5DD63771DD8062C009B32B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18CF666633576DAA8B13E63D /* Pods-StockMarketAppTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = StockMarketAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vosswarellc.ios.StockMarketAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StockMarketApp.app/StockMarketApp";
+			};
+			name = Debug;
+		};
+		A5DD63781DD8062C009B32B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29A1F1972CAF7C4D3C5EFADA /* Pods-StockMarketAppTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = StockMarketAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vosswarellc.ios.StockMarketAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StockMarketApp.app/StockMarketApp";
+			};
+			name = Release;
+		};
+		A5DD637A1DD8062C009B32B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90787A102D679984CBE492F9 /* Pods-StockMarketAppUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = StockMarketAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vosswarellc.ios.StockMarketAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = StockMarketApp;
+			};
+			name = Debug;
+		};
+		A5DD637B1DD8062C009B32B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F19B1A8EFD0D0F456A272D38 /* Pods-StockMarketAppUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = StockMarketAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vosswarellc.ios.StockMarketAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = StockMarketApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A5DD63461DD8062C009B32B6 /* Build configuration list for PBXProject "StockMarketApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5DD63711DD8062C009B32B6 /* Debug */,
+				A5DD63721DD8062C009B32B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5DD63731DD8062C009B32B6 /* Build configuration list for PBXNativeTarget "StockMarketApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5DD63741DD8062C009B32B6 /* Debug */,
+				A5DD63751DD8062C009B32B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5DD63761DD8062C009B32B6 /* Build configuration list for PBXNativeTarget "StockMarketAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5DD63771DD8062C009B32B6 /* Debug */,
+				A5DD63781DD8062C009B32B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5DD63791DD8062C009B32B6 /* Build configuration list for PBXNativeTarget "StockMarketAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5DD637A1DD8062C009B32B6 /* Debug */,
+				A5DD637B1DD8062C009B32B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A5DD63431DD8062C009B32B6 /* Project object */;
+}

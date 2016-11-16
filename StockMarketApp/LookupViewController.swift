@@ -8,6 +8,17 @@
 
 import UIKit
 
+
+enum ParseError : Error {
+    case nilData
+    case responseString
+    case json
+    case responseType
+    case noResults
+    case invalidResponseDict
+}
+
+
 class LookupViewController: UIViewController, UISearchBarDelegate {
 
     // example lookup get request
@@ -65,96 +76,135 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                     return
                 }
 
-                guard let safeData = data else {
-                    self.alertWithTitle(title: "Data Is Nil", message: "", ackStr: "OK")
-                    return
-                }
-                guard let responseString = String(data: safeData, encoding: String.Encoding.utf8) else {
-                    self.alertWithTitle(title: "Error Parsing Data", message: "", ackStr: "OK")
-                    return
-                }
-                print("responseString = \(responseString)")
-            
-                /*let stringLen : Int = testStr.characters.count;
-
-                
-                let startIndex = testStr.index(testStr.startIndex, offsetBy: 1)
-                let endIndex = testStr.index(testStr.endIndex, offsetBy: -1)
-                
-
-                guard let jsonResponseString = responseString?.substring(with: startIndex..<endIndex) else {
-                    print("oh no!")
-                    return
-                }*/
-            
-
-                // Convert server json response to NSDictionary
-
-//                let str = "{\"name\":\"James\"}"
-//                if let result = self.convertJSONArrStringtoArray(text: str) {
-//                    print("example: \(result)")
-//                }
-            
-                guard let response = self.convertJSONArrStringtoArray(text: responseString) else {
-                    self.alertWithTitle(title: "Error Parsing JSON", message: "", ackStr: "OK")
-                    return
-                }
-                
-                //if let arr = response as? [Any] {
-                    //print("arr: \(arr)")
-                //}
-                
-                guard let responseArr = response as? NSArray else {
-                    return
+                do {
+                    try self.parseData(data)
+                    
+                } catch ParseError.nilData {
+                    self.alertWithTitle(title: "Parse Error", message: "Nil Data", ackStr: "OK")
+                    
+                } catch ParseError.responseString {
+                    self.alertWithTitle(title: "Parse Error", message: "Error with Response String", ackStr: "OK")
+                    
+                } catch ParseError.json {
+                    self.alertWithTitle(title: "Parse Error", message: "Error with JSON", ackStr: "OK")
+                    
+                } catch ParseError.responseType {
+                    self.alertWithTitle(title: "Parse Error", message: "Response Type", ackStr: "OK")
+                    
+                } catch ParseError.noResults {
+                    self.alertWithTitle(title: "Parse Error", message: "No Results", ackStr: "OK")
+                    
+                } catch ParseError.invalidResponseDict {
+                    self.alertWithTitle(title: "Parse Error", message: "Invalid Response Dict", ackStr: "OK")
+                    
+                } catch {
+                    print("Unknown error: \(error)")
                 }
 
-                if (responseArr.count == 0) {
-                    self.symbolLbl.text = "Symbol:"
-                    self.companyNameLbl.text = "Company Name:"
-                    self.exchangeLbl.text = "Exchange:"
-                    self.alertWithTitle(title: "No Results Found", message: "For "+searchStr, ackStr: "OK")
-                    return
-                }
-                
-                /* response: (
-                 {
-                 Exchange = NYSE;
-                 Name = "L-3 Communications Holdings Inc";
-                 Symbol = LLL;
-                 },
-                 {
-                 Exchange = "BATS Trading Inc";
-                 Name = "L-3 Communications Holdings Inc";
-                 Symbol = LLL;
-                 },
-                 {
-                 Exchange = NASDAQ;
-                 Name = "Lululemon Athletica Inc";
-                 Symbol = LULU;
-                 }
-                 )
-                 */
-                
-                //print("response: \(responseArr)")
-                //print("response[0]: \(responseArr[0])")
-                if let responseDict = responseArr[0] as? NSDictionary {
-                    if let dict = responseDict as? [String: String] {
-                        if let symbolStr = dict["Symbol"] {
-                            self.symbolLbl.text = "Symbol: " + symbolStr
-                        }
-                        if let companyNameStr = dict["Name"] {
-                            self.companyNameLbl.text = "Company Name: " + companyNameStr
-                        }
-                        if let exchangeStr = dict["Exchange"] {
-                            self.exchangeLbl.text = "Exchange: " + exchangeStr
-                        }
-                    }
-                }
             })
         })
         
         task.resume()
     }
+
+    
+    func parseData(_ data:Data?) throws {
+        guard let safeData = data else {
+            //self.alertWithTitle(title: "Data Is Nil", message: "", ackStr: "OK")
+            throw ParseError.nilData
+            //return
+        }
+        guard let responseString = String(data: safeData, encoding: String.Encoding.utf8) else {
+            self.alertWithTitle(title: "Error Parsing Data", message: "", ackStr: "OK")
+            throw ParseError.responseString
+            //return
+        }
+        print("responseString = \(responseString)")
+        
+        /*let stringLen : Int = testStr.characters.count;
+         
+         
+         let startIndex = testStr.index(testStr.startIndex, offsetBy: 1)
+         let endIndex = testStr.index(testStr.endIndex, offsetBy: -1)
+         
+         
+         guard let jsonResponseString = responseString?.substring(with: startIndex..<endIndex) else {
+         print("oh no!")
+         return
+         }*/
+        
+        
+        // Convert server json response to NSDictionary
+        
+        //                let str = "{\"name\":\"James\"}"
+        //                if let result = self.convertJSONArrStringtoArray(text: str) {
+        //                    print("example: \(result)")
+        //                }
+        
+        guard let response = self.convertJSONArrStringtoArray(text: responseString) else {
+            //self.alertWithTitle(title: "Error Parsing JSON", message: "", ackStr: "OK")
+            //return
+            throw ParseError.json
+        }
+        
+        //if let arr = response as? [Any] {
+        //print("arr: \(arr)")
+        //}
+        
+        guard let responseArr = response as? NSArray else {
+            throw ParseError.responseType
+            //return
+        }
+        
+        if (responseArr.count == 0) {
+            self.symbolLbl.text = "Symbol:"
+            self.companyNameLbl.text = "Company Name:"
+            self.exchangeLbl.text = "Exchange:"
+            //self.alertWithTitle(title: "No Results Found", message: "For "+searchStr, ackStr: "OK")
+            //return
+            throw ParseError.noResults
+        }
+        
+        /* response: (
+         {
+         Exchange = NYSE;
+         Name = "L-3 Communications Holdings Inc";
+         Symbol = LLL;
+         },
+         {
+         Exchange = "BATS Trading Inc";
+         Name = "L-3 Communications Holdings Inc";
+         Symbol = LLL;
+         },
+         {
+         Exchange = NASDAQ;
+         Name = "Lululemon Athletica Inc";
+         Symbol = LULU;
+         }
+         )
+         */
+        
+        //print("response: \(responseArr)")
+        //print("response[0]: \(responseArr[0])")
+        if let responseDict = responseArr[0] as? NSDictionary {
+            if let dict = responseDict as? [String: String] {
+                if let symbolStr = dict["Symbol"] {
+                    self.symbolLbl.text = "Symbol: " + symbolStr
+                }
+                if let companyNameStr = dict["Name"] {
+                    self.companyNameLbl.text = "Company Name: " + companyNameStr
+                }
+                if let exchangeStr = dict["Exchange"] {
+                    self.exchangeLbl.text = "Exchange: " + exchangeStr
+                }
+            } else {
+                throw ParseError.invalidResponseDict
+            }
+        } else {
+            throw ParseError.invalidResponseDict
+        }
+    }
+    
     
     func convertJSONArrStringtoArray(text: String) -> Any? {
         print("text: \(text)");

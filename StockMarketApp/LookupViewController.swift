@@ -16,6 +16,25 @@ enum ParseError : Error {
     case responseType
     case noResults
     case invalidResponseDict
+    
+    var description: String {
+        switch self {
+        case .nilData:
+            return "Nil Data"
+        case .responseString:
+            return "Error with Response String"
+        case .json:
+            return "Error with JSON"
+        case .responseType:
+            return "Response Type"
+        case .noResults:
+            return "No Results"
+        case .invalidResponseDict:
+            return "Invalid Response Dict"
+        //default:
+        //    return "Unknown Error"
+        }
+    }
 }
 
 
@@ -76,22 +95,22 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                     try self.parseData(data)
                     
                 } catch ParseError.nilData {
-                    self.alertWithTitle(title: parseErrorTitle, message: "Nil Data", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.nilData.description, ackStr: "OK")
                     
                 } catch ParseError.responseString {
-                    self.alertWithTitle(title: parseErrorTitle, message: "Error with Response String", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.responseString.description, ackStr: "OK")
                     
                 } catch ParseError.json {
-                    self.alertWithTitle(title: parseErrorTitle, message: "Error with JSON", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.json.description, ackStr: "OK")
                     
                 } catch ParseError.responseType {
-                    self.alertWithTitle(title: parseErrorTitle, message: "Response Type", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.responseType.description, ackStr: "OK")
                     
                 } catch ParseError.noResults {
-                    self.alertWithTitle(title: parseErrorTitle, message: "No Results", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.noResults.description, ackStr: "OK")
                     
                 } catch ParseError.invalidResponseDict {
-                    self.alertWithTitle(title: parseErrorTitle, message: "Invalid Response Dict", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.invalidResponseDict.description, ackStr: "OK")
                     
                 } catch {
                     self.alertWithTitle(title: parseErrorTitle, message: "Unknown error: \(error)", ackStr: "OK")

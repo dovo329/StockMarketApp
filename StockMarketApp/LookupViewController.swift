@@ -121,33 +121,10 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         
         task.resume()
     }
-
+    
     
     func parseData(_ data:Data?) throws {
-        guard let safeData = data else {
-            throw ParseError.nilData
-        }
-        
-        guard let responseString = String(data: safeData, encoding: String.Encoding.utf8) else {
-            throw ParseError.responseString
-        }
-        //print("responseString = \(responseString)")
-        
-        guard let response = self.convertJSONArrStringtoArray(text: responseString) else {
-            throw ParseError.json
-        }
-        
-        guard let responseArr = response as? NSArray else {
-            throw ParseError.responseType
-        }
-        
-        if (responseArr.count == 0) {
-            clearUI()
-
-            throw ParseError.noResults
-        }
-        
-        /* response: (
+                /* response: (
          {
          Exchange = NYSE;
          Name = "L-3 Communications Holdings Inc";
@@ -166,43 +143,52 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
          )
          */
         
-        //print("response: \(responseArr)")
-        //print("response[0]: \(responseArr[0])")
-        if let responseDict = responseArr[0] as? NSDictionary {
-            if let dict = responseDict as? [String: String] {
-                if let symbolStr = dict["Symbol"] {
-                    self.symbolLbl.text = "Symbol: " + symbolStr
-                }
-                if let companyNameStr = dict["Name"] {
-                    self.companyNameLbl.text = "Company Name: " + companyNameStr
-                }
-                if let exchangeStr = dict["Exchange"] {
-                    self.exchangeLbl.text = "Exchange: " + exchangeStr
-                }
-            } else {
-                throw ParseError.invalidResponseDict
+        guard let safeData = data else {
+            throw ParseError.nilData
+        }
+        
+        let jsonObj : Any
+        do {
+            try jsonObj = JSONSerialization.jsonObject(with: safeData, options: [])
+            
+        } catch let error as NSError {
+            
+            throw error
+        }
+        
+        guard let responseArr = jsonObj as? [Any] else {
+            throw ParseError.responseType
+        }
+        
+        if (responseArr.count == 0) {
+            clearUI()
+
+            throw ParseError.noResults
+        }
+
+        
+        if let dict = responseArr[0] as? [String: String] {
+
+            if let symbolStr = dict["Symbol"] {
+                self.symbolLbl.text = "Symbol: " + symbolStr
             }
+            if let companyNameStr = dict["Name"] {
+                self.companyNameLbl.text = "Company Name: " + companyNameStr
+            }
+            if let exchangeStr = dict["Exchange"] {
+                self.exchangeLbl.text = "Exchange: " + exchangeStr
+            }
+
         } else {
             throw ParseError.invalidResponseDict
         }
     }
     
     
-    func convertJSONArrStringtoArray(text: String) -> Any? {
-        print("text: \(text)");
-        if let data = text.data(using: String.Encoding.utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: [])
-            } catch let error as NSError {
-                print(error)
-            }
-        }
-        return nil
-    }
-    
-    
     func clearUI() {
-        ParseError.noResults.description
+        self.symbolLbl.text = "Symbol: "
+        self.companyNameLbl.text = "Company Name: "
+        self.exchangeLbl.text = "Exchange: "
     }
     
     

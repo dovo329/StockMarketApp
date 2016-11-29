@@ -129,7 +129,6 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         }
         
         guard let responseString = String(data: safeData, encoding: String.Encoding.utf8) else {
-            self.alertWithTitle(title: "Error Parsing Data", message: "", ackStr: "OK")
             throw ParseError.responseString
         }
         //print("responseString = \(responseString)")
@@ -143,9 +142,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         }
         
         if (responseArr.count == 0) {
-            self.symbolLbl.text = "Symbol:"
-            self.companyNameLbl.text = "Company Name:"
-            self.exchangeLbl.text = "Exchange:"
+            clearUI()
 
             throw ParseError.noResults
         }
@@ -202,6 +199,12 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         }
         return nil
     }
+    
+    
+    func clearUI() {
+        ParseError.noResults.description
+    }
+    
     
     func alertWithTitle(title: String, message: String, ackStr: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)

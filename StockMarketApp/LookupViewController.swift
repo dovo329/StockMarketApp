@@ -42,24 +42,19 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         // okay now I need to start the spinner and make my network request
         
         guard let searchStr = searchBar.text else {
-            let alertController = UIAlertController(title: "Please Enter Some Text To Search For", message: "text is nil", preferredStyle: UIAlertControllerStyle.alert)
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:nil)
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            self.alertWithTitle(title: "Please Enter Some Text To Search For", message: "text is nil", ackStr: "OK")
             return
         }
         
         guard let encodedSearchStr = searchStr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-            assert(false, "encodedSearchStr is nil")
+            self.alertWithTitle(title: "Failed to URL encode search string", message: "", ackStr: "OK")
             return
         }
         
         let lookupURLStr = baseURLStr + "Lookup/json?input=" + encodedSearchStr
-
         
-        let lookupURLOpt = URL(string: lookupURLStr);
-        guard let lookupURL = lookupURLOpt else {
-            assert(false, "lookupURL is nil")
+        guard let lookupURL = URL(string: lookupURLStr) else {
+            self.alertWithTitle(title: "String to URL conversion failed", message: "", ackStr: "OK")
             return
         }
         var request = URLRequest(url:lookupURL);
@@ -76,29 +71,30 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                     return
                 }
 
+                let parseErrorTitle = "Parse Error";
                 do {
                     try self.parseData(data)
                     
                 } catch ParseError.nilData {
-                    self.alertWithTitle(title: "Parse Error", message: "Nil Data", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: "Nil Data", ackStr: "OK")
                     
                 } catch ParseError.responseString {
-                    self.alertWithTitle(title: "Parse Error", message: "Error with Response String", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: "Error with Response String", ackStr: "OK")
                     
                 } catch ParseError.json {
-                    self.alertWithTitle(title: "Parse Error", message: "Error with JSON", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: "Error with JSON", ackStr: "OK")
                     
                 } catch ParseError.responseType {
-                    self.alertWithTitle(title: "Parse Error", message: "Response Type", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: "Response Type", ackStr: "OK")
                     
                 } catch ParseError.noResults {
-                    self.alertWithTitle(title: "Parse Error", message: "No Results", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: "No Results", ackStr: "OK")
                     
                 } catch ParseError.invalidResponseDict {
-                    self.alertWithTitle(title: "Parse Error", message: "Invalid Response Dict", ackStr: "OK")
+                    self.alertWithTitle(title: parseErrorTitle, message: "Invalid Response Dict", ackStr: "OK")
                     
                 } catch {
-                    print("Unknown error: \(error)")
+                    self.alertWithTitle(title: parseErrorTitle, message: "Unknown error: \(error)", ackStr: "OK")
                 }
 
             })
@@ -110,58 +106,28 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
     
     func parseData(_ data:Data?) throws {
         guard let safeData = data else {
-            //self.alertWithTitle(title: "Data Is Nil", message: "", ackStr: "OK")
             throw ParseError.nilData
-            //return
         }
+        
         guard let responseString = String(data: safeData, encoding: String.Encoding.utf8) else {
             self.alertWithTitle(title: "Error Parsing Data", message: "", ackStr: "OK")
             throw ParseError.responseString
-            //return
         }
-        print("responseString = \(responseString)")
-        
-        /*let stringLen : Int = testStr.characters.count;
-         
-         
-         let startIndex = testStr.index(testStr.startIndex, offsetBy: 1)
-         let endIndex = testStr.index(testStr.endIndex, offsetBy: -1)
-         
-         
-         guard let jsonResponseString = responseString?.substring(with: startIndex..<endIndex) else {
-         print("oh no!")
-         return
-         }*/
-        
-        
-        // Convert server json response to NSDictionary
-        
-        //                let str = "{\"name\":\"James\"}"
-        //                if let result = self.convertJSONArrStringtoArray(text: str) {
-        //                    print("example: \(result)")
-        //                }
+        //print("responseString = \(responseString)")
         
         guard let response = self.convertJSONArrStringtoArray(text: responseString) else {
-            //self.alertWithTitle(title: "Error Parsing JSON", message: "", ackStr: "OK")
-            //return
             throw ParseError.json
         }
         
-        //if let arr = response as? [Any] {
-        //print("arr: \(arr)")
-        //}
-        
         guard let responseArr = response as? NSArray else {
             throw ParseError.responseType
-            //return
         }
         
         if (responseArr.count == 0) {
             self.symbolLbl.text = "Symbol:"
             self.companyNameLbl.text = "Company Name:"
             self.exchangeLbl.text = "Exchange:"
-            //self.alertWithTitle(title: "No Results Found", message: "For "+searchStr, ackStr: "OK")
-            //return
+
             throw ParseError.noResults
         }
         

@@ -107,7 +107,7 @@
         <!--Quote-->
         <scene sceneID="8dD-jn-dA1">
             <objects>
-                <viewController id="2gF-tz-Fwb" customClass="ChartViewController" customModule="StockMarketApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2gF-tz-Fwb" customClass="QuoteViewController" customModule="StockMarketApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="br1-Xh-08B"/>
                         <viewControllerLayoutGuide type="bottom" id="tRf-QI-08f"/>
@@ -115,18 +115,47 @@
                     <view key="view" contentMode="scaleToFill" id="VDd-Qq-E2Z">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" prompt="Quote for Ticker Symbol" translatesAutoresizingMaskIntoConstraints="NO" id="OJr-HH-UsI">
+                                <rect key="frame" x="0.0" y="20" width="320" height="75"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2gF-tz-Fwb" id="T4i-V0-f6R"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1bQ-PS-5ic">
+                                <rect key="frame" x="0.0" y="95" width="320" height="424"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2gF-tz-Fwb" id="2JM-Z5-y3V"/>
+                                    <outlet property="delegate" destination="2gF-tz-Fwb" id="Z1m-Ie-369"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tRf-QI-08f" firstAttribute="top" secondItem="1bQ-PS-5ic" secondAttribute="bottom" id="0lP-op-IIr"/>
+                            <constraint firstItem="OJr-HH-UsI" firstAttribute="top" secondItem="br1-Xh-08B" secondAttribute="bottom" id="4OS-Do-4cX"/>
+                            <constraint firstItem="1bQ-PS-5ic" firstAttribute="leading" secondItem="VDd-Qq-E2Z" secondAttribute="leading" id="LQh-XA-Rzt"/>
+                            <constraint firstItem="1bQ-PS-5ic" firstAttribute="top" secondItem="OJr-HH-UsI" secondAttribute="bottom" id="TXP-mN-exH"/>
+                            <constraint firstAttribute="trailing" secondItem="OJr-HH-UsI" secondAttribute="trailing" id="djp-Ix-PR5"/>
+                            <constraint firstItem="OJr-HH-UsI" firstAttribute="leading" secondItem="VDd-Qq-E2Z" secondAttribute="leading" id="j2S-CX-W8Y"/>
+                            <constraint firstAttribute="trailing" secondItem="1bQ-PS-5ic" secondAttribute="trailing" id="sJz-N8-1A0"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Quote" image="Message" id="958-Fh-8un"/>
+                    <connections>
+                        <outlet property="tableView" destination="1bQ-PS-5ic" id="WIu-zx-G21"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yya-ZC-6mD" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="150" y="912"/>
+            <point key="canvasLocation" x="150" y="911.61971830985919"/>
         </scene>
         <!--Chart-->
         <scene sceneID="ABe-tH-O7T">
             <objects>
-                <viewController id="A9a-5U-d3Q" customClass="QuoteViewController" customModule="StockMarketApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="A9a-5U-d3Q" customClass="ChartViewController" customModule="StockMarketApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VdH-z1-Lmf"/>
                         <viewControllerLayoutGuide type="bottom" id="JRb-me-qty"/>

@@ -124,7 +124,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
     
     
     func parseData(_ data:Data?) throws {
-                /* response: (
+        /* response: (
          {
          Exchange = NYSE;
          Name = "L-3 Communications Holdings Inc";

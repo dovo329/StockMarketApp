@@ -49,9 +49,9 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
 
             return;
         }
-        let testURL = "http://dev.markitondemand.com/Api/v2/Quote/json?symbol="+searchText
+        let url = "http://dev.markitondemand.com/Api/v2/Quote/json?symbol="+searchText
         
-        Alamofire.request(testURL).responseJSON { response in
+        Alamofire.request(url).responseJSON { response in
 //            print(response.request)  // original URL request
 //            print(response.response) // HTTP URL response
 //            print(response.data)     // server data
@@ -78,7 +78,19 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
 //                    Timestamp = "Fri Dec 2 16:02:00 UTC-05:00 2016";
 //                    Volume = 511958;
 //                }
-                
+                if let dict = JSON as? NSDictionary {
+                    self.dataSource.removeAll()
+                    let change = dict["Change"] as? Double ?? 0.0
+                    let changeNum = NSNumber(value: change)
+                    let changeStr = NumberFormatter.localizedString(from: changeNum, number: NumberFormatter.Style.currency)
+                    
+                    self.dataSource.append(TitleDetailPair(title: "Change", detail:changeStr))
+    //                self.dataSource.append(TitleDetailPair(title: "Change %", detail:JSON["ChangePercent"]))
+    //                self.dataSource.append(TitleDetailPair(title: "Change % YTD", detail:JSON["ChangePercentYTD"]))
+    //                self.dataSource.append(TitleDetailPair(title: "Change YTD", detail:JSON["ChangeYTD"]))
+    //                self.dataSource.append(TitleDetailPair(title: "High", detail:JSON["High"]))
+                    self.tableView.reloadData()
+                }
                 
             }
         }

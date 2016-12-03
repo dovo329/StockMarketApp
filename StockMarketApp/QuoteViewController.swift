@@ -53,11 +53,17 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
 //    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchText = searchBar.text else {
-
-            return;
+        guard let searchStr = searchBar.text else {
+            simpleAlert(vc: self, title: "Please Enter Some Text To Search For", message: "text is nil", ackStr: "OK")
+            return
         }
-        let url = "http://dev.markitondemand.com/Api/v2/Quote/json?symbol="+searchText
+        
+        guard let encodedSearchStr = searchStr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+            simpleAlert(vc: self, title: "Failed to URL encode search string", message: "", ackStr: "OK")
+            return
+        }
+        
+        let url = "http://dev.markitondemand.com/Api/v2/Quote/json?symbol="+encodedSearchStr
         
         tableSpinner.startAnimating()
         dataSource.removeAll()

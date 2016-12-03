@@ -22,6 +22,19 @@ func currencyFromDouble(_ arg: Double) -> String {
     return str
 }
 
+func percentFromDouble(_ arg: Double) -> String {
+    let num = NSNumber(value: arg)
+    let str = NumberFormatter.localizedString(from: num, number: NumberFormatter.Style.percent)
+    return str
+}
+
+func toDoubleStr(_ arg: Any?) -> String {
+    let argDouble = arg as? Double ?? 0.0
+    let num = NSNumber(value: argDouble)
+    let str = NumberFormatter.localizedString(from: num, number: NumberFormatter.Style.decimal)
+    return str
+}
+
 func safeString(_ arg: Any?) -> String {
     let returnStr = arg as? String ?? ""
     return returnStr

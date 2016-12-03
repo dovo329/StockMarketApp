@@ -107,13 +107,13 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
                         self.dataSource.append(TitleDetailPair(title: "Symbol", detail:safeString(dict["Symbol"])))
                         self.dataSource.append(TitleDetailPair(title: "LastPrice", detail:self.toCurrencyStr(dict["LastPrice"])))
                         self.dataSource.append(TitleDetailPair(title: "Change", detail:self.toCurrencyStr(dict["Change"])))
-                        self.dataSource.append(TitleDetailPair(title: "Change %", detail:self.toCurrencyStr(dict["ChangePercent"])))
+                        self.dataSource.append(TitleDetailPair(title: "Change %", detail:self.toPercentStr(dict["ChangePercent"])))
                         self.dataSource.append(TitleDetailPair(title: "Timestamp", detail:safeString(dict["Timestamp"])))
-                        self.dataSource.append(TitleDetailPair(title: "MSDate", detail:self.toCurrencyStr(dict["MSDate"])))
+                        self.dataSource.append(TitleDetailPair(title: "MSDate", detail:toDoubleStr(dict["MSDate"])))
                         self.dataSource.append(TitleDetailPair(title: "MarketCap", detail:self.toCurrencyStr(dict["MarketCap"])))
                         self.dataSource.append(TitleDetailPair(title: "Volume", detail:anyToIntString(dict["Volume"])))
                         self.dataSource.append(TitleDetailPair(title: "Change YTD", detail:self.toCurrencyStr(dict["ChangeYTD"])))
-                        self.dataSource.append(TitleDetailPair(title: "Change % YTD", detail:self.toCurrencyStr(dict["ChangePercentYTD"])))
+                        self.dataSource.append(TitleDetailPair(title: "Change % YTD", detail:self.toPercentStr(dict["ChangePercentYTD"])))
                         self.dataSource.append(TitleDetailPair(title: "High", detail:self.toCurrencyStr(dict["High"])))
                         self.dataSource.append(TitleDetailPair(title: "Low", detail:self.toCurrencyStr(dict["Low"])))
                         self.dataSource.append(TitleDetailPair(title: "Open", detail:self.toCurrencyStr(dict["Open"])))
@@ -157,5 +157,10 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
     func toCurrencyStr(_ arg: Any?) -> String {
         let currency = arg as? Double ?? 0.0
         return currencyFromDouble(currency)
+    }
+    
+    func toPercentStr(_ arg: Any?) -> String {
+        let percent = arg as? Double ?? 0.0
+        return percentFromDouble(percent)
     }
 }

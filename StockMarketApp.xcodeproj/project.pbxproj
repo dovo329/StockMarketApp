@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		67A41CCA02E3B02AA386880A /* Pods_StockMarketAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049BCE5B899DF1BF3B9C3A06 /* Pods_StockMarketAppTests.framework */; };
 		9D4FCEE05A1E06419B6E6AD2 /* Pods_StockMarketAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF45DE539FE4A877C134F69 /* Pods_StockMarketAppUITests.framework */; };
+		A54E15641DF36D54000BAC70 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E15631DF36D54000BAC70 /* Utils.swift */; };
 		A5765CB41DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5765CB21DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.swift */; };
 		A5765CB51DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5765CB31DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.xib */; };
 		A5DD634F1DD8062C009B32B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD634E1DD8062C009B32B6 /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		29A1F1972CAF7C4D3C5EFADA /* Pods-StockMarketAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketAppTests/Pods-StockMarketAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		529843FBB681A0C87A75A3DB /* Pods-StockMarketApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketApp/Pods-StockMarketApp.release.xcconfig"; sourceTree = "<group>"; };
 		90787A102D679984CBE492F9 /* Pods-StockMarketAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketAppUITests/Pods-StockMarketAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A54E15631DF36D54000BAC70 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A5765CB21DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftTitleRightDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A5765CB31DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftTitleRightDetailTableViewCell.xib; sourceTree = "<group>"; };
 		A5DD634B1DD8062C009B32B6 /* StockMarketApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockMarketApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +159,7 @@
 			children = (
 				A5DD634E1DD8062C009B32B6 /* AppDelegate.swift */,
 				A5F7F8F41DF316ED00DE475D /* StockMarketApp-BridgingHeader.h */,
+				A54E15631DF36D54000BAC70 /* Utils.swift */,
 				A5DD637E1DD80670009B32B6 /* VCs */,
 				A5765CB61DEF197E00DACC0F /* Views */,
 				A5DD63521DD8062C009B32B6 /* Main.storyboard */,
@@ -467,6 +470,7 @@
 				A5DD63821DD8069B009B32B6 /* ChartViewController.swift in Sources */,
 				A5DD637D1DD8066A009B32B6 /* LookupViewController.swift in Sources */,
 				A5DD634F1DD8062C009B32B6 /* AppDelegate.swift in Sources */,
+				A54E15641DF36D54000BAC70 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

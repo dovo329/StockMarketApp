@@ -61,19 +61,19 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         // okay now I need to start the spinner and make my network request
         
         guard let searchStr = searchBar.text else {
-            self.alertWithTitle(title: "Please Enter Some Text To Search For", message: "text is nil", ackStr: "OK")
+            simpleAlert(vc: self, title: "Please Enter Some Text To Search For", message: "text is nil", ackStr: "OK")
             return
         }
         
         guard let encodedSearchStr = searchStr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-            self.alertWithTitle(title: "Failed to URL encode search string", message: "", ackStr: "OK")
+            simpleAlert(vc: self, title: "Failed to URL encode search string", message: "", ackStr: "OK")
             return
         }
         
         let lookupURLStr = baseURLStr + "Lookup/json?input=" + encodedSearchStr
         
         guard let lookupURL = URL(string: lookupURLStr) else {
-            self.alertWithTitle(title: "String to URL conversion failed", message: "", ackStr: "OK")
+            simpleAlert(vc: self, title: "String to URL conversion failed", message: "", ackStr: "OK")
             return
         }
         var request = URLRequest(url:lookupURL);
@@ -86,7 +86,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                 self.spinner.stopAnimating()
             
                 if let error = error {
-                    self.alertWithTitle(title: error.localizedDescription, message: "", ackStr: "OK")
+                    simpleAlert(vc: self, title: error.localizedDescription, message: "", ackStr: "OK")
                     return
                 }
 
@@ -95,25 +95,25 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                     try self.parseData(data)
                     
                 } catch ParseError.nilData {
-                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.nilData.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.nilData.description, ackStr: "OK")
                     
                 } catch ParseError.responseString {
-                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.responseString.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseString.description, ackStr: "OK")
                     
                 } catch ParseError.json {
-                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.json.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.json.description, ackStr: "OK")
                     
                 } catch ParseError.responseType {
-                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.responseType.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseType.description, ackStr: "OK")
                     
                 } catch ParseError.noResults {
-                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.noResults.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.noResults.description, ackStr: "OK")
                     
                 } catch ParseError.invalidResponseDict {
-                    self.alertWithTitle(title: parseErrorTitle, message: ParseError.invalidResponseDict.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.invalidResponseDict.description, ackStr: "OK")
                     
                 } catch {
-                    self.alertWithTitle(title: parseErrorTitle, message: "Unknown error: \(error)", ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: "Unknown error: \(error)", ackStr: "OK")
                 }
 
             })
@@ -189,13 +189,5 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         self.symbolLbl.text = "Symbol: "
         self.companyNameLbl.text = "Company Name: "
         self.exchangeLbl.text = "Exchange: "
-    }
-    
-    
-    func alertWithTitle(title: String, message: String, ackStr: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: ackStr, style: UIAlertActionStyle.default, handler:nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
     }
 }

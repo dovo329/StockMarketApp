@@ -21,3 +21,15 @@ func currencyFromDouble(_ arg: Double) -> String {
     let str = NumberFormatter.localizedString(from: num, number: NumberFormatter.Style.currency)
     return str
 }
+
+func safeString(_ arg: Any?) -> String {
+    let returnStr = arg as? String ?? ""
+    return returnStr
+}
+
+func anyToIntString(_ arg: Any?) -> String {
+    let argInt = arg as? Int ?? 0
+    let num = NSNumber(value: argInt)
+    let str = NumberFormatter.localizedString(from: num, number: NumberFormatter.Style.none)
+    return str
+}

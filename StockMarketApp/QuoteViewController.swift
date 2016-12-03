@@ -87,15 +87,14 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
                 if let dict = JSON as? NSDictionary {
                     self.dataSource.removeAll()
                     
-                    //let change = dict["Change"] as? Double ?? 0.0
+
                     self.dataSource.append(TitleDetailPair(title: "Change", detail:self.toCurrencyStr(dict["Change"])))
-                    
-//                    let change = dict["ChangePercent"] as? Double ?? 0.0
-//                    self.dataSource.append(TitleDetailPair(title: "Change %", detail:JSON["ChangePercent"]))
-                    
-    //                self.dataSource.append(TitleDetailPair(title: "Change % YTD", detail:JSON["ChangePercentYTD"]))
-    //                self.dataSource.append(TitleDetailPair(title: "Change YTD", detail:JSON["ChangeYTD"]))
-    //                self.dataSource.append(TitleDetailPair(title: "High", detail:JSON["High"]))
+                    self.dataSource.append(TitleDetailPair(title: "Change %", detail:self.toCurrencyStr(dict["ChangePercent"])))
+                    self.dataSource.append(TitleDetailPair(title: "Change % YTD", detail:self.toCurrencyStr(dict["ChangeYTD"])))
+                    self.dataSource.append(TitleDetailPair(title: "High", detail:self.toCurrencyStr(dict["High"])))
+                    self.dataSource.append(TitleDetailPair(title: "LastPrice", detail:self.toCurrencyStr(dict["LastPrice"])))
+                    self.dataSource.append(TitleDetailPair(title: "Low", detail:self.toCurrencyStr(dict["Low"])))
+
                     self.tableView.reloadData()
                 }
                 

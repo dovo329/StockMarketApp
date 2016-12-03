@@ -9,35 +9,18 @@
 import UIKit
 
 enum QuoteError : Error {
-    case nilData
-    case responseString
-    case json
-    case responseType
-    case noResults
-    case invalidResponseDict
+    case someError
     
     var description: String {
         switch self {
-        case .nilData:
-            return "Nil Data"
-        case .responseString:
-            return "Error with Response String"
-        case .json:
-            return "Error with JSON"
-        case .responseType:
-            return "Response Type"
-        case .noResults:
-            return "No Results"
-        case .invalidResponseDict:
-            return "Invalid Response Dict"
-            //default:
-            //    return "Unknown Error"
+        case .someError:
+            return "Some Error"
         }
     }
 }
 
 
-class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     let CellId : String = "cell.id"
     @IBOutlet weak var tableView: UITableView!
@@ -73,6 +56,58 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
     "Low": 155.83,
     "Open": 156.6
     }*/
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+//        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://google.com/"]];
+//        NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
+//        path:@"http://google.com/api/pigs/"
+//        parameters:nil];
+//        
+//        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//        
+//        [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
+//        
+//        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        // Print the response body in text
+//        NSLog(@"Response: %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+//        
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//        }];
+//        [operation start];
+        
+//        NSOperationQueue *networkQueue = [[NSOperationQueue alloc] init];
+//        
+//        networkQueue.maxConcurrentOperationCount = 5;
+//        
+//        NSURL *url = [NSURL URLWithString:@"https://example.com"];
+//        
+//        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//        
+//        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
+//        initWithRequest:request];
+//        
+//        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        
+//        NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        
+//        NSLog(@"%@", string);
+//        
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        NSLog(@"%s: AFHTTPRequestOperation error: %@", __FUNCTION__, error);
+//        }];
+//        [networkQueue addOperation:operation];
+        
+        //var opQ = OperationQueue()
+        //opQ.maxConcurrentOperationCount = 1
+        //let url = URL(string: "http://dev.markitondemand.com/Api/v2/Quote?symbol=LLL")
+        
+    }
+    
     
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

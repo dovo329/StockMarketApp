@@ -64,6 +64,7 @@
 		A5DD637C1DD8066A009B32B6 /* LookupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookupViewController.swift; sourceTree = "<group>"; };
 		A5DD637F1DD8068E009B32B6 /* QuoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewController.swift; sourceTree = "<group>"; };
 		A5DD63811DD8069B009B32B6 /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		A5F7F8F41DF316ED00DE475D /* StockMarketApp-BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StockMarketApp-BridgingHeader.h"; sourceTree = SOURCE_ROOT; };
 		AA603F441F5CEE65CA26CBBA /* Pods_StockMarketApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StockMarketApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5DF4400A6E38242E6AD3088 /* Pods-StockMarketApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketApp/Pods-StockMarketApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F19B1A8EFD0D0F456A272D38 /* Pods-StockMarketAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketAppUITests/Pods-StockMarketAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				A5DD634E1DD8062C009B32B6 /* AppDelegate.swift */,
+				A5F7F8F41DF316ED00DE475D /* StockMarketApp-BridgingHeader.h */,
 				A5DD637E1DD80670009B32B6 /* VCs */,
 				A5765CB61DEF197E00DACC0F /* Views */,
 				A5DD63521DD8062C009B32B6 /* Main.storyboard */,
@@ -187,8 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				A5DD637C1DD8066A009B32B6 /* LookupViewController.swift */,
-				A5DD63811DD8069B009B32B6 /* ChartViewController.swift */,
 				A5DD637F1DD8068E009B32B6 /* QuoteViewController.swift */,
+				A5DD63811DD8069B009B32B6 /* ChartViewController.swift */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -564,6 +566,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "StockMarketApp-BridgingHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -607,6 +610,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "StockMarketApp-BridgingHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

@@ -81,10 +81,7 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
                 if let dict = JSON as? NSDictionary {
                     self.dataSource.removeAll()
                     let change = dict["Change"] as? Double ?? 0.0
-                    let changeNum = NSNumber(value: change)
-                    let changeStr = NumberFormatter.localizedString(from: changeNum, number: NumberFormatter.Style.currency)
-                    
-                    self.dataSource.append(TitleDetailPair(title: "Change", detail:changeStr))
+                    self.dataSource.append(TitleDetailPair(title: "Change", detail:currencyFromDouble(change)))
     //                self.dataSource.append(TitleDetailPair(title: "Change %", detail:JSON["ChangePercent"]))
     //                self.dataSource.append(TitleDetailPair(title: "Change % YTD", detail:JSON["ChangePercentYTD"]))
     //                self.dataSource.append(TitleDetailPair(title: "Change YTD", detail:JSON["ChangeYTD"]))

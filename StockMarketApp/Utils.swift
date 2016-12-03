@@ -15,3 +15,9 @@ func simpleAlert(vc: UIViewController, title: String, message: String, ackStr: S
     alertController.addAction(okAction)
     vc.present(alertController, animated: true, completion: nil)
 }
+
+func currencyFromDouble(_ arg: Double) -> String {
+    let num = NSNumber(value: arg)
+    let str = NumberFormatter.localizedString(from: num, number: NumberFormatter.Style.currency)
+    return str
+}

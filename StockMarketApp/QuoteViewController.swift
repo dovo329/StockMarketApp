@@ -26,6 +26,8 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
     let CellId : String = "cell.id"
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var tableSpinner: UIActivityIndicatorView!
+    
     struct TitleDetailPair {
         var title = ""
         var detail = ""
@@ -57,7 +59,11 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         let url = "http://dev.markitondemand.com/Api/v2/Quote/json?symbol="+searchText
         
+        tableSpinner.startAnimating()
+        dataSource.removeAll()
+        self.tableView.reloadData()
         Alamofire.request(url).responseJSON { response in
+            self.tableSpinner.stopAnimating()
 //            print(response.request)  // original URL request
 //            print(response.response) // HTTP URL response
 //            print(response.data)     // server data
@@ -85,8 +91,6 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
 //                    Volume = 511958;
 //                }
                 if let dict = JSON as? NSDictionary {
-                    self.dataSource.removeAll()
-                    
 
                     self.dataSource.append(TitleDetailPair(title: "Change", detail:self.toCurrencyStr(dict["Change"])))
                     self.dataSource.append(TitleDetailPair(title: "Change %", detail:self.toCurrencyStr(dict["ChangePercent"])))
@@ -96,8 +100,13 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
                     self.dataSource.append(TitleDetailPair(title: "Low", detail:self.toCurrencyStr(dict["Low"])))
 
                     self.tableView.reloadData()
+                    
+                } else {
+                    simpleAlert(vc: self, title: "JSON Parse Error", message: "", ackStr: "OK")
                 }
                 
+            } else {
+                simpleAlert(vc: self, title: response.result.error?.localizedDescription ?? "Error", message: "", ackStr: "OK")
             }
         }
     }

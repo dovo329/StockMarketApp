@@ -131,6 +131,10 @@
                                     <outlet property="delegate" destination="2gF-tz-Fwb" id="Z1m-Ie-369"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ujv-rq-5hP" userLabel="spinner">
+                                <rect key="frame" x="142" y="288.5" width="37" height="37"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -138,13 +142,16 @@
                             <constraint firstItem="OJr-HH-UsI" firstAttribute="top" secondItem="br1-Xh-08B" secondAttribute="bottom" id="4OS-Do-4cX"/>
                             <constraint firstItem="1bQ-PS-5ic" firstAttribute="leading" secondItem="VDd-Qq-E2Z" secondAttribute="leading" id="LQh-XA-Rzt"/>
                             <constraint firstItem="1bQ-PS-5ic" firstAttribute="top" secondItem="OJr-HH-UsI" secondAttribute="bottom" id="TXP-mN-exH"/>
+                            <constraint firstItem="ujv-rq-5hP" firstAttribute="centerX" secondItem="1bQ-PS-5ic" secondAttribute="centerX" id="ZYZ-Ni-1r9"/>
                             <constraint firstAttribute="trailing" secondItem="OJr-HH-UsI" secondAttribute="trailing" id="djp-Ix-PR5"/>
+                            <constraint firstItem="ujv-rq-5hP" firstAttribute="centerY" secondItem="1bQ-PS-5ic" secondAttribute="centerY" id="hwj-Db-yBd"/>
                             <constraint firstItem="OJr-HH-UsI" firstAttribute="leading" secondItem="VDd-Qq-E2Z" secondAttribute="leading" id="j2S-CX-W8Y"/>
                             <constraint firstAttribute="trailing" secondItem="1bQ-PS-5ic" secondAttribute="trailing" id="sJz-N8-1A0"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Quote" image="Message" id="958-Fh-8un"/>
                     <connections>
+                        <outlet property="tableSpinner" destination="ujv-rq-5hP" id="aln-TE-QvD"/>
                         <outlet property="tableView" destination="1bQ-PS-5ic" id="WIu-zx-G21"/>
                     </connections>
                 </viewController>

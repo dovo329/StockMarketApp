@@ -44,6 +44,12 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
         dataSource.append(TitleDetailPair(title: "Title 3", detail: "Detail 3"))
     }
     
+    // Why won't it recognize this?
+//    func toCurrentStr(_ arg: Any) -> String {
+//        let currency = arg as? Double ?? 0.0
+//        return currencyFromDouble(currency)
+//    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else {
 
@@ -80,9 +86,13 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
 //                }
                 if let dict = JSON as? NSDictionary {
                     self.dataSource.removeAll()
-                    let change = dict["Change"] as? Double ?? 0.0
-                    self.dataSource.append(TitleDetailPair(title: "Change", detail:currencyFromDouble(change)))
-    //                self.dataSource.append(TitleDetailPair(title: "Change %", detail:JSON["ChangePercent"]))
+                    
+                    //let change = dict["Change"] as? Double ?? 0.0
+                    self.dataSource.append(TitleDetailPair(title: "Change", detail:self.toCurrencyStr(dict["Change"])))
+                    
+//                    let change = dict["ChangePercent"] as? Double ?? 0.0
+//                    self.dataSource.append(TitleDetailPair(title: "Change %", detail:JSON["ChangePercent"]))
+                    
     //                self.dataSource.append(TitleDetailPair(title: "Change % YTD", detail:JSON["ChangePercentYTD"]))
     //                self.dataSource.append(TitleDetailPair(title: "Change YTD", detail:JSON["ChangeYTD"]))
     //                self.dataSource.append(TitleDetailPair(title: "High", detail:JSON["High"]))
@@ -114,5 +124,10 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
         let ds = dataSource[indexPath.row]
         c?.title.text = ds.title
         c?.detail.text = ds.detail
+    }
+    
+    func toCurrencyStr(_ arg: Any?) -> String {
+        let currency = arg as? Double ?? 0.0
+        return currencyFromDouble(currency)
     }
 }

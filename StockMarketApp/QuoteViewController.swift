@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 enum QuoteError : Error {
     case someError
@@ -25,6 +26,7 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
     let CellId : String = "cell.id"
     @IBOutlet weak var tableView: UITableView!
     var dataSource = [String]()
+    //var opQ = OperationQueue()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,54 +60,22 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
     }*/
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else {
+
+            return;
+        }
+        let testURL = "http://dev.markitondemand.com/Api/v2/Quote/json?symbol="+searchText
         
-//        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://google.com/"]];
-//        NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
-//        path:@"http://google.com/api/pigs/"
-//        parameters:nil];
-//        
-//        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//        
-//        [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
-//        
-//        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        // Print the response body in text
-//        NSLog(@"Response: %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-//        
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error: %@", error);
-//        }];
-//        [operation start];
-        
-//        NSOperationQueue *networkQueue = [[NSOperationQueue alloc] init];
-//        
-//        networkQueue.maxConcurrentOperationCount = 5;
-//        
-//        NSURL *url = [NSURL URLWithString:@"https://example.com"];
-//        
-//        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//        
-//        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
-//        initWithRequest:request];
-//        
-//        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        
-//        NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//        
-//        NSLog(@"%@", string);
-//        
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//        NSLog(@"%s: AFHTTPRequestOperation error: %@", __FUNCTION__, error);
-//        }];
-//        [networkQueue addOperation:operation];
-        
-        //var opQ = OperationQueue()
-        //opQ.maxConcurrentOperationCount = 1
-        //let url = URL(string: "http://dev.markitondemand.com/Api/v2/Quote?symbol=LLL")
-        
+        Alamofire.request(testURL).responseJSON { response in
+//            print(response.request)  // original URL request
+//            print(response.response) // HTTP URL response
+//            print(response.data)     // server data
+//            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+            }
+        }
     }
     
     
@@ -127,5 +97,12 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
         let c = cell as? LeftTitleRightDetailTableViewCell
         c?.title.text = dataSource[indexPath.row]
         c?.detail.text = "detail \(indexPath.row)"
+    }
+    
+    func alertWithTitle(title: String, message: String, ackStr: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: ackStr, style: UIAlertActionStyle.default, handler:nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }

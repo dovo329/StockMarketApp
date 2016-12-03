@@ -9,7 +9,7 @@
 #ifndef StockMarketApp_BridgingHeader_h
 #define StockMarketApp_BridgingHeader_h
 
-@import AFNetworking;
+//@import AFNetworking;
 //#import <AFNetworking/AFNetworking.h>
 
 #endif /* StockMarketApp_BridgingHeader_h */

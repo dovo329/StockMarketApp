@@ -280,6 +280,7 @@
 					};
 					A5DD63691DD8062C009B32B6 = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						TestTargetID = A5DD634A1DD8062C009B32B6;
 					};

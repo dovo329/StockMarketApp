@@ -9,7 +9,10 @@ target 'StockMarketApp' do
   platform :ios, '8.0'
   # Pods for StockMarketApp
 
-  pod 'AFNetworking', '~> 3.0'
+  #AFNetworking requires NS* type classes which Swift 3.0 doesn't allow so can't use it
+  #pod 'AFNetworking', '~> 3.0'
+  #pod 'Alamofire', '~> 4.0'
+  pod 'Alamofire'
 
   target 'StockMarketAppTests' do
     inherit! :search_paths

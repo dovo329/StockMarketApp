@@ -79,6 +79,9 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         var request = URLRequest(url:lookupURL);
         request.httpMethod = "GET"
         
+        // dismiss keyboard
+        self.view.endEditing(true)
+        
         spinner.startAnimating()
         let task = URLSession.shared.dataTask(with: request, completionHandler:{ (data: Data?, response: URLResponse?, error: Error?) -> Void in
         
@@ -113,7 +116,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                     simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.invalidResponseDict.description, ackStr: "OK")
                     
                 } catch {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: "Unknown error: \(error)", ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: "Unknown error: \(error.localizedDescription)", ackStr: "OK")
                 }
 
             })
@@ -151,8 +154,8 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         do {
             try jsonObj = JSONSerialization.jsonObject(with: safeData, options: [])
             
-        } catch let error as NSError {
-            
+        //} catch let error as NSError {
+        } catch {
             throw error
         }
         
@@ -169,15 +172,23 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         
         if let dict = responseArr[0] as? [String: String] {
 
-            if let symbolStr = dict["Symbol"] {
-                self.symbolLbl.text = "Symbol: " + symbolStr
+            var symbolLblTxt = "Symbol: "
+            if let symbol = dict["Symbol"] {
+                symbolLblTxt += symbol
             }
-            if let companyNameStr = dict["Name"] {
-                self.companyNameLbl.text = "Company Name: " + companyNameStr
+            self.symbolLbl.text = symbolLblTxt
+            
+            var companyNameLblTxt = "Company Name: "
+            if let companyName = dict["Name"] {
+                companyNameLblTxt += companyName
             }
-            if let exchangeStr = dict["Exchange"] {
-                self.exchangeLbl.text = "Exchange: " + exchangeStr
+            self.companyNameLbl.text = companyNameLblTxt
+            
+            var exchangeLblTxt = "Exchange: ";
+            if let exchange = dict["Exchange"] {
+                exchangeLblTxt += exchange
             }
+            self.exchangeLbl.text = exchangeLblTxt
 
         } else {
             throw ParseError.invalidResponseDict

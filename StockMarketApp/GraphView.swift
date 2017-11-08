@@ -41,9 +41,19 @@ class GraphView: UIView {
         
         context.setFillColor(UIColor.green.cgColor)
         context.addPath(outlinePath)
-        context.fillPath()
+        //context.fillPath()
+        
+        let gradientColorArr = [UIColor.green.cgColor, UIColor.blue.cgColor] as CFArray
+        let locationsArr: [CGFloat] = [0.0, 1.0]
+        
+        guard let gradient = CGGradient(colorsSpace: context.colorSpace, colors: gradientColorArr, locations: locationsArr) else {
+            assertionFailure("Unable to create gradient for GraphView")
+            return
+        }
+        
+        context.drawLinearGradient(gradient, start: CGPoint(x:0.0, y:0.0), end: CGPoint(x:0.0, y: self.bounds.size.height), options: CGGradientDrawingOptions())
         
         context.addPath(outlinePath)
-        context.strokePath()        
+        context.strokePath()
     }
 }

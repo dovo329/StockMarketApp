@@ -29,7 +29,7 @@ class GraphView: UIView {
         context.setFillColor(backgroundColor)
         context.fill(self.bounds)
         context.setStrokeColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
-        context.setLineWidth(1.0)
+        context.setLineWidth(3.0)
         
         let outlinePath = CGMutablePath()
         
@@ -37,10 +37,13 @@ class GraphView: UIView {
         outlinePath.addLine(to: CGPoint(x: self.bounds.size.width, y: self.bounds.size.height/2.0))
         outlinePath.addLine(to: CGPoint(x: self.bounds.size.width, y: self.bounds.size.height))
         outlinePath.addLine(to: CGPoint(x: 0.0, y: self.bounds.size.height))
-        outlinePath.addLine(to: CGPoint(x: 0.0, y: 0.0))
+        outlinePath.closeSubpath()
         
-        context.setFillColor(UIColor.green.cgColor)
         context.addPath(outlinePath)
+        context.strokePath()
+        
+        context.addPath(outlinePath)
+        context.clip()
         //context.fillPath()
         
         let gradientColorArr = [UIColor.green.cgColor, UIColor.blue.cgColor] as CFArray
@@ -50,10 +53,8 @@ class GraphView: UIView {
             assertionFailure("Unable to create gradient for GraphView")
             return
         }
-        
         context.drawLinearGradient(gradient, start: CGPoint(x:0.0, y:0.0), end: CGPoint(x:0.0, y: self.bounds.size.height), options: CGGradientDrawingOptions())
         
-        context.addPath(outlinePath)
-        context.strokePath()
+        
     }
 }

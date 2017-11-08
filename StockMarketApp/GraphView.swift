@@ -28,33 +28,33 @@ class GraphView: UIView {
         let backgroundColor = self.backgroundColor?.cgColor ?? UIColor.white.cgColor
         context.setFillColor(backgroundColor)
         context.fill(self.bounds)
-        context.setStrokeColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
-        context.setLineWidth(3.0)
         
-        let outlinePath = CGMutablePath()
+        let fillPath = CGMutablePath()
+        fillPath.move(to: CGPoint(x: 0.0, y: 0.0))
+        fillPath.addLine(to: CGPoint(x: self.bounds.size.width, y: self.bounds.size.height/2.0))
+        fillPath.addLine(to: CGPoint(x: self.bounds.size.width, y: self.bounds.size.height))
+        fillPath.addLine(to: CGPoint(x: 0.0, y: self.bounds.size.height))
+        fillPath.closeSubpath()
         
-        outlinePath.move(to: CGPoint(x: 0.0, y: 0.0))
-        outlinePath.addLine(to: CGPoint(x: self.bounds.size.width, y: self.bounds.size.height/2.0))
-        outlinePath.addLine(to: CGPoint(x: self.bounds.size.width, y: self.bounds.size.height))
-        outlinePath.addLine(to: CGPoint(x: 0.0, y: self.bounds.size.height))
-        outlinePath.closeSubpath()
-        
-        context.addPath(outlinePath)
-        context.strokePath()
-        
-        context.addPath(outlinePath)
+        context.saveGState()
+        context.addPath(fillPath)
         context.clip()
         //context.fillPath()
-        
         let gradientColorArr = [UIColor.green.cgColor, UIColor.blue.cgColor] as CFArray
         let locationsArr: [CGFloat] = [0.0, 1.0]
-        
         guard let gradient = CGGradient(colorsSpace: context.colorSpace, colors: gradientColorArr, locations: locationsArr) else {
             assertionFailure("Unable to create gradient for GraphView")
             return
         }
         context.drawLinearGradient(gradient, start: CGPoint(x:0.0, y:0.0), end: CGPoint(x:0.0, y: self.bounds.size.height), options: CGGradientDrawingOptions())
+        context.restoreGState()
         
-        
+        let topLinePath = CGMutablePath()
+        topLinePath.move(to: CGPoint(x: 0.0 , y: 0.0))
+        topLinePath.addLine(to: CGPoint(x: self.bounds.size.width, y: self.bounds.size.height/2.0))
+        context.addPath(topLinePath)
+        context.setStrokeColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        context.setLineWidth(5.0)
+        context.strokePath()
     }
 }

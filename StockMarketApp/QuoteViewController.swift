@@ -75,27 +75,27 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
                 
                 print("JSON: \(JSON)")
                 // this is example of what I get back:
-//                JSON: {
-//                    Change = "-0.260000000000019";
-//                    ChangePercent = "-0.165089846974423";
-//                    ChangePercentYTD = "31.5622123671659";
-//                    ChangeYTD = "119.51";
-//                    High = "157.9";
-//                    LastPrice = "157.23";
-//                    Low = "156.64";
-//                    MSDate = "42706.6680555556";
-//                    MarketCap = 12155294070;
-//                    Name = "L-3 Communications Holdings Inc";
-//                    Open = "157.44";
-//                    Status = SUCCESS;
-//                    Symbol = LLL;
-//                    Timestamp = "Fri Dec 2 16:02:00 UTC-05:00 2016";
-//                    Volume = 511958;
+//                {
+//                    "Status": "SUCCESS",
+//                    "Name": "L3 Technologies Inc",
+//                    "Symbol": "LLL",
+//                    "LastPrice": 186.1,
+//                    "Change": -0.300000000000011,
+//                    "ChangePercent": -0.16094420600859,
+//                    "Timestamp": "Tue Nov 7 16:02:01 UTC-05:00 2017",
+//                    "MSDate": 43046.6680671296,
+//                    "MarketCap": 14542226200,
+//                    "Volume": 503375,
+//                    "ChangeYTD": 152.11,
+//                    "ChangePercentYTD": 22.345670896062,
+//                    "High": 187.9,
+//                    "Low": 185.57,
+//                    "Open": 186.41
 //                }
-                if let dict = JSON as? NSDictionary {
+                if let dict = JSON as? [String: Any] {
 
-                    if let msg = dict["Message"] as? String {
-                        simpleAlert(vc: self, title: msg, message: "", ackStr: "OK")
+                    if let errorMessage = dict["Message"] as? String {
+                        simpleAlert(vc: self, title: "Error", message: errorMessage, ackStr: "OK")
                         
                     } else {
                         

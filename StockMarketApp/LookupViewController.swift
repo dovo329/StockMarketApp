@@ -20,19 +20,17 @@ enum ParseError : Error {
     var localizedDescription: String {
         switch self {
         case .nilData:
-            return "Nil Data"
+            return NSLocalizedString("Nil Data", comment: "Parse Error")
         case .responseString:
-            return "Error with Response String"
+            return NSLocalizedString("Error with Response String", comment: "Parse Error")
         case .json:
-            return "Error with JSON"
+            return NSLocalizedString("Error with JSON", comment: "Parse Error")
         case .responseType:
-            return "Response Type"
+            return NSLocalizedString("Response Type", comment: "Parse Error")
         case .noResults:
-            return "No Results"
+            return NSLocalizedString("No Results", comment: "Parse Error")
         case .invalidResponseDict:
-            return "Invalid Response Dict"
-        //default:
-        //    return "Unknown Error"
+            return NSLocalizedString("Invalid Response Dict", comment: "Parse Error")
         }
     }
 }

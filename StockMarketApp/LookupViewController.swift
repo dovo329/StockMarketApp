@@ -17,7 +17,7 @@ enum ParseError : Error {
     case noResults
     case invalidResponseDict
     
-    var description: String {
+    var localizedDescription: String {
         switch self {
         case .nilData:
             return "Nil Data"
@@ -98,22 +98,22 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                     try self.parseData(data)
                     
                 } catch ParseError.nilData {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.nilData.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.nilData.localizedDescription, ackStr: "OK")
                     
                 } catch ParseError.responseString {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseString.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseString.localizedDescription, ackStr: "OK")
                     
                 } catch ParseError.json {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.json.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.json.localizedDescription, ackStr: "OK")
                     
                 } catch ParseError.responseType {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseType.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseType.localizedDescription, ackStr: "OK")
                     
                 } catch ParseError.noResults {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.noResults.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.noResults.localizedDescription, ackStr: "OK")
                     
                 } catch ParseError.invalidResponseDict {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.invalidResponseDict.description, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.invalidResponseDict.localizedDescription, ackStr: "OK")
                     
                 } catch {
                     simpleAlert(vc: self, title: parseErrorTitle, message: "Unknown error: \(error.localizedDescription)", ackStr: "OK")

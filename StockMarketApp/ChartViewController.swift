@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChartViewController: UIViewController {
+class ChartViewController: UIViewController, UISearchBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,20 +16,125 @@ class ChartViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else {
+            simpleAlert(vc: self, title: NSLocalizedString("Error", comment: "Alert title"), message: NSLocalizedString("Please enter some search text", comment: "Alert message"), ackStr: NSLocalizedString("OK", comment: "Alert button"))
+            return;
+        }
+        
+        let urlStr = BaseURLStr + "InteractiveChart/json?" +
+        "parameters={" +
+            "\"Normalized\":false," +
+            "\"NumberOfDays\":365," +
+            "\"DataPeriod\":\"Day\"," +
+            "\"Elements\":[{" +
+            "\"Symbol\":\"LLL\"," +
+            "\"Type\":\"price\"," +
+            "\"Params\":[\"c\"]}]}"
+        
+        guard let urlPercentEncodedStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed), let url = URL(string: urlPercentEncodedStr) else {
+            simpleAlert(vc: self, title: NSLocalizedString("Error", comment: "Alert title"), message: NSLocalizedString("Could not make url", comment: "Alert message"), ackStr: NSLocalizedString("OK", comment: "Alert button"))
+            return;
+        }
+        var request = URLRequest(url: url);
+        request.httpMethod = "GET"
+        
+        //dismiss keyboard
+        self.view.endEditing(true)
+        
+        let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            
+            DispatchQueue.main.async( execute: {
+                
+                if let error = error {
+                    simpleAlert(vc: self, title: NSLocalizedString("Error", comment: "Alert title"), message: error.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
+                    return
+                }
+                
+                do {
+                    try self.parseData(data)
+                } catch {
+                    simpleAlert(vc: self, title: NSLocalizedString("Error", comment: "Alert title"), message: error.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
+                }
+            })
+        }
+        task.resume()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func parseData(_ data: Data?) throws {
+        //    http://dev.markitondemand.com/Api/v2/InteractiveChart/json?parameters={
+        //    "Normalized":false,
+        //    "NumberOfDays":365,
+        //    "DataPeriod":"Day",
+        //    "Elements":[{
+        //    "Symbol":"LLL",
+        //    "Type":"price",
+        //    "Params":["c"]}]}
+        //
+        //{
+        //    "Labels": null,
+        //    "Positions": [
+        //    0,
+        //    0.004,
+        //
+        //    "Dates": [
+        //    "2016-11-08T00:00:00",
+        //    "2016-11-09T00:00:00",
+        //
+        //    "Elements": [
+        //    {
+        //    "Currency": "USD",
+        //    "TimeStamp": null,
+        //    "Symbol": "LLL",
+        //    "Type": "price",
+        //    "DataSeries": {
+        //    "close": {
+        //    "min": 137.73,
+        //    "max": 191.55,
+        //    "maxDate": "2017-10-02T00:00:00",
+        //    "minDate": "2016-11-08T00:00:00",
+        //    "values": [
+        //    137.73,
+        //    148.35,
+        
+        guard let safeData = data else {
+            throw ParseError.nilData
+        }
+        
+        let jsonObj : Any
+        do {
+            try jsonObj = JSONSerialization.jsonObject(with: safeData, options: [])
+        } catch {
+            throw error
+        }
+        
+        guard let jsonDict = jsonObj as? [String: Any]
+            else {
+                throw ParseError.responseType
+        }
+        
+        guard let positionsArr = jsonDict["Positions"] as? [Double],
+            let datesArr = jsonDict["Dates"] as? [String],
+            let elementsDict = jsonDict["Elements"] as? [String: Any]
+            else {
+                throw ParseError.invalidResponseDict
+        }
+        
+        guard let dataSeriesDict = elementsDict["DataSeries"] as? [String: Any]
+            else {
+                throw ParseError.invalidResponseDict
+        }
+     
+        guard let closeDict = dataSeriesDict["close"] as? [String: Any]
+            else {
+                throw ParseError.invalidResponseDict
+        }
+        
+        guard let valuesArr = closeDict["values"] as? [Double]
+            else {
+                throw ParseError.invalidResponseDict
+        }
+        
+        // now I have positionsArr, datesArr, and valuesArr that I can use to make the graph
     }
-    */
-
 }

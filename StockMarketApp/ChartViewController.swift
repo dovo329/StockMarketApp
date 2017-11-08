@@ -11,7 +11,8 @@ import UIKit
 class ChartViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var graphView: GraphView!
-    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -69,10 +70,11 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
 //
 //        dataTask.resume()
         
-        let task = URLSession.shared.dataTask(with: request as! URLRequest) { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+        self.spinner.startAnimating()
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             
             DispatchQueue.main.async( execute: {
-                
+                self.spinner.stopAnimating()
                 if let error = error {
                     simpleAlert(vc: self, title: NSLocalizedString("Error", comment: "Alert title"), message: error.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                     return

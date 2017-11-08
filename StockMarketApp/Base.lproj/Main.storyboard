@@ -182,13 +182,19 @@
                                 <rect key="frame" x="0.0" y="76" width="320" height="443"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="AwK-75-rXy" userLabel="spinner">
+                                <rect key="frame" x="142" y="279" width="37" height="37"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="EUP-nn-lQZ" firstAttribute="leading" secondItem="puf-ML-Ude" secondAttribute="leading" id="3pm-4O-rhC"/>
+                            <constraint firstItem="AwK-75-rXy" firstAttribute="centerX" secondItem="ZnC-Qy-msa" secondAttribute="centerX" id="7gG-ZH-x7n"/>
                             <constraint firstItem="ZnC-Qy-msa" firstAttribute="leading" secondItem="puf-ML-Ude" secondAttribute="leading" id="9ye-De-kZH"/>
                             <constraint firstAttribute="trailing" secondItem="EUP-nn-lQZ" secondAttribute="trailing" id="Q6R-Re-yiQ"/>
                             <constraint firstAttribute="trailing" secondItem="ZnC-Qy-msa" secondAttribute="trailing" id="R7w-b9-3gS"/>
+                            <constraint firstItem="AwK-75-rXy" firstAttribute="centerY" secondItem="ZnC-Qy-msa" secondAttribute="centerY" id="RoK-uQ-SbZ"/>
                             <constraint firstItem="EUP-nn-lQZ" firstAttribute="top" secondItem="VdH-z1-Lmf" secondAttribute="bottom" id="ZUi-5B-87d"/>
                             <constraint firstItem="JRb-me-qty" firstAttribute="top" secondItem="ZnC-Qy-msa" secondAttribute="bottom" id="isO-hf-RfF"/>
                             <constraint firstItem="ZnC-Qy-msa" firstAttribute="top" secondItem="EUP-nn-lQZ" secondAttribute="bottom" id="yvy-B2-JGc"/>
@@ -197,6 +203,7 @@
                     <tabBarItem key="tabBarItem" title="Chart" image="graphIcon" id="pGi-qr-TV6"/>
                     <connections>
                         <outlet property="graphView" destination="ZnC-Qy-msa" id="zJR-3t-vHh"/>
+                        <outlet property="spinner" destination="AwK-75-rXy" id="scs-vn-yPF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZ1-PN-VzG" sceneMemberID="firstResponder"/>

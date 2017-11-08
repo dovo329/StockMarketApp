@@ -81,7 +81,7 @@ class GraphView: UIView {
             
             context.addPath(linePath)
             context.setStrokeColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
-            context.setLineWidth(5.0)
+            context.setLineWidth(1.0)
             context.strokePath()
         }
         

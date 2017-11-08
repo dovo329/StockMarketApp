@@ -138,9 +138,29 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
                 throw ParseError.responseType
         }
         
-        guard let positionsArr = jsonDict["Positions"] as? [Double],
-            let datesArr = jsonDict["Dates"] as? [String],
-            let elementsDict = jsonDict["Elements"] as? [String: Any]
+//        guard let positionsArr = jsonDict["Positions"] as? [Double],
+//            let datesArr = jsonDict["Dates"] as? [Any],
+//            let elementsDict = jsonDict["Elements"] as? [String: Any]
+//            else {
+//                throw ParseError.invalidResponseDict
+//        }
+        
+        guard let positionsArr = jsonDict["Positions"] as? [Double]
+            else {
+                throw ParseError.invalidResponseDict
+        }
+        
+        guard let datesArr = jsonDict["Dates"] as? [String]
+            else {
+                throw ParseError.invalidResponseDict
+        }
+        
+        guard let elementsArr = jsonDict["Elements"] as? [Any]
+            else {
+                throw ParseError.invalidResponseDict
+        }
+        
+        guard let elementsDict = elementsArr.first as? [String: Any]
             else {
                 throw ParseError.invalidResponseDict
         }

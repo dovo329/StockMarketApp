@@ -59,19 +59,19 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         // okay now I need to start the spinner and make my network request
         
         guard let searchStr = searchBar.text else {
-            simpleAlert(vc: self, title: "Please Enter Some Text To Search For", message: "text is nil", ackStr: "OK")
+            simpleAlert(vc: self, title: NSLocalizedString("Please Enter Some Text To Search For", comment: "Alert title"), message: NSLocalizedString("text is nil", comment: "Alert message"), ackStr: NSLocalizedString("OK", comment: "Alert button"))
             return
         }
         
         guard let encodedSearchStr = searchStr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-            simpleAlert(vc: self, title: "Failed to URL encode search string", message: "", ackStr: "OK")
+            simpleAlert(vc: self, title: NSLocalizedString("Failed to URL encode search string", comment: "Alert title"), message: "", ackStr: NSLocalizedString("OK", comment: "Alert button"))
             return
         }
         
         let lookupURLStr = baseURLStr + "Lookup/json?input=" + encodedSearchStr
         
         guard let lookupURL = URL(string: lookupURLStr) else {
-            simpleAlert(vc: self, title: "String to URL conversion failed", message: "", ackStr: "OK")
+            simpleAlert(vc: self, title: NSLocalizedString("String to URL conversion failed", comment: "Alert title"), message: "", ackStr: NSLocalizedString("OK", comment: "Alert button"))
             return
         }
         var request = URLRequest(url:lookupURL);
@@ -87,34 +87,34 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                 self.spinner.stopAnimating()
             
                 if let error = error {
-                    simpleAlert(vc: self, title: error.localizedDescription, message: "", ackStr: "OK")
+                    simpleAlert(vc: self, title: NSLocalizedString("Error", comment: "Alert title"), message: error.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                     return
                 }
 
-                let parseErrorTitle = "Parse Error";
+                let parseErrorTitle = NSLocalizedString("Parse Error", comment: "Alert title");
                 do {
                     try self.parseData(data)
                     
                 } catch ParseError.nilData {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.nilData.localizedDescription, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.nilData.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                     
                 } catch ParseError.responseString {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseString.localizedDescription, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseString.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                     
                 } catch ParseError.json {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.json.localizedDescription, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.json.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                     
                 } catch ParseError.responseType {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseType.localizedDescription, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseType.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                     
                 } catch ParseError.noResults {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.noResults.localizedDescription, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.noResults.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                     
                 } catch ParseError.invalidResponseDict {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.invalidResponseDict.localizedDescription, ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.invalidResponseDict.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                     
                 } catch {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: "Unknown error: \(error.localizedDescription)", ackStr: "OK")
+                    simpleAlert(vc: self, title: parseErrorTitle, message: error.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                 }
 
             })
@@ -123,6 +123,9 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         task.resume()
     }
     
+    private let SymbolFieldPrefix = NSLocalizedString("Symbol: ", comment: "Stock data field title")
+    private let CompanyNameFieldPrefix = NSLocalizedString("Company Name: ", comment: "Stock data field title")
+    private let ExchangeFieldPrefix = NSLocalizedString("Exchange: ", comment: "Stock data field title")
     
     func parseData(_ data:Data?) throws {
         /* response: (
@@ -170,19 +173,19 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         
         if let dict = responseArr[0] as? [String: String] {
 
-            var symbolLblTxt = "Symbol: "
+            var symbolLblTxt = SymbolFieldPrefix;
             if let symbol = dict["Symbol"] {
                 symbolLblTxt += symbol
             }
             self.symbolLbl.text = symbolLblTxt
             
-            var companyNameLblTxt = "Company Name: "
+            var companyNameLblTxt = CompanyNameFieldPrefix;
             if let companyName = dict["Name"] {
                 companyNameLblTxt += companyName
             }
             self.companyNameLbl.text = companyNameLblTxt
             
-            var exchangeLblTxt = "Exchange: ";
+            var exchangeLblTxt = ExchangeFieldPrefix;
             if let exchange = dict["Exchange"] {
                 exchangeLblTxt += exchange
             }
@@ -195,8 +198,8 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
     
     
     func clearUI() {
-        self.symbolLbl.text = "Symbol: "
-        self.companyNameLbl.text = "Company Name: "
-        self.exchangeLbl.text = "Exchange: "
+        self.symbolLbl.text = SymbolFieldPrefix
+        self.companyNameLbl.text = CompanyNameFieldPrefix
+        self.exchangeLbl.text = ExchangeFieldPrefix
     }
 }

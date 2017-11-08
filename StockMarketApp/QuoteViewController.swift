@@ -46,7 +46,7 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
             return
         }
         
-        let url = "http://dev.markitondemand.com/Api/v2/Quote/json?symbol="+encodedSearchStr
+        let url = BaseURLStr + "Quote/json?symbol="+encodedSearchStr
         
         self.view.endEditing(true)
         

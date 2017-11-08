@@ -40,7 +40,6 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
 
     // example lookup get request
     //http://dev.markitondemand.com/Api/v2/Lookup/json?input=Microsoft
-    let baseURLStr : String = "http://dev.markitondemand.com/Api/v2/";
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var symbolLbl: UILabel!
@@ -68,7 +67,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
             return
         }
         
-        let lookupURLStr = baseURLStr + "Lookup/json?input=" + encodedSearchStr
+        let lookupURLStr = BaseURLStr + "Lookup/json?input=" + encodedSearchStr
         
         guard let lookupURL = URL(string: lookupURLStr) else {
             simpleAlert(vc: self, title: NSLocalizedString("String to URL conversion failed", comment: "Alert title"), message: "", ackStr: NSLocalizedString("OK", comment: "Alert button"))
@@ -127,7 +126,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
     private let CompanyNameFieldPrefix = NSLocalizedString("Company Name: ", comment: "Stock data field title")
     private let ExchangeFieldPrefix = NSLocalizedString("Exchange: ", comment: "Stock data field title")
     
-    func parseData(_ data:Data?) throws {
+    private func parseData(_ data:Data?) throws {
         /* response: (
          {
          Exchange = NYSE;

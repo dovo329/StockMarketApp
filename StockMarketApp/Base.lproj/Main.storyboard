@@ -195,6 +195,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chart" image="graphIcon" id="pGi-qr-TV6"/>
+                    <connections>
+                        <outlet property="graphView" destination="ZnC-Qy-msa" id="zJR-3t-vHh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZ1-PN-VzG" sceneMemberID="firstResponder"/>
             </objects>

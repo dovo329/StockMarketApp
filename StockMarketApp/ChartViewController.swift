@@ -10,6 +10,8 @@ import UIKit
 
 class ChartViewController: UIViewController, UISearchBarDelegate {
 
+    @IBOutlet weak var graphView: GraphView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -181,5 +183,13 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         }
         
         // now I have positionsArr, datesArr, and valuesArr that I can use to make the graph
+        self.graphView.xCoords = positionsArr
+        
+        let maxValue = valuesArr.max() ?? 1.0
+        var normalizedValuesArr = [Double]()
+        for value in valuesArr {
+            normalizedValuesArr.append(value/maxValue)
+        }
+        self.graphView.yCoords = normalizedValuesArr
     }
 }

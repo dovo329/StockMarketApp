@@ -11,11 +11,19 @@ import UIKit
 
 class GraphView: UIView {
     
-//    var xCoords = [Double]()
-//    var yCoords = [Double]()
+    var xCoords = [Double]() {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    var yCoords = [Double]() {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     
-    var xCoords : [Double] = [0.0, 0.25, 0.5, 0.75, 1.0]
-    var yCoords : [Double] = [0.0, 0.5, 1.0, 0.25, 0.1]
+//    var xCoords : [Double] = [0.0, 0.25, 0.5, 0.75, 1.0]
+//    var yCoords : [Double] = [0.0, 0.5, 1.0, 0.25, 0.1]
     
     required init?(coder aDecoder: NSCoder) {
         print("init coder \(aDecoder)")

@@ -170,7 +170,21 @@
                     <view key="view" contentMode="scaleToFill" id="puf-ML-Ude">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Ticker Symbol" translatesAutoresizingMaskIntoConstraints="NO" id="EUP-nn-lQZ">
+                                <rect key="frame" x="0.0" y="20" width="320" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="A9a-5U-d3Q" id="i9b-dg-yQ0"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="EUP-nn-lQZ" firstAttribute="leading" secondItem="puf-ML-Ude" secondAttribute="leading" id="3pm-4O-rhC"/>
+                            <constraint firstAttribute="trailing" secondItem="EUP-nn-lQZ" secondAttribute="trailing" id="Q6R-Re-yiQ"/>
+                            <constraint firstItem="EUP-nn-lQZ" firstAttribute="top" secondItem="VdH-z1-Lmf" secondAttribute="bottom" id="ZUi-5B-87d"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chart" image="graphIcon" id="pGi-qr-TV6"/>
                 </viewController>

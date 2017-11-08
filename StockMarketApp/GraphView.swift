@@ -35,6 +35,7 @@ class GraphView: UIView {
             assertionFailure("Unable to get core graphics context for GraphView")
             return
         }
+        context.saveGState()
         
         let backgroundColor = self.backgroundColor?.cgColor ?? UIColor.white.cgColor
         context.setFillColor(backgroundColor)
@@ -83,5 +84,7 @@ class GraphView: UIView {
             context.setLineWidth(5.0)
             context.strokePath()
         }
+        
+        context.restoreGState()
     }
 }

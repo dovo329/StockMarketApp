@@ -41,16 +41,10 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         tableView.register(UINib(nibName: "LeftTitleRightDetailTableViewCell", bundle: nil), forCellReuseIdentifier: CellId)
         
-        dataSource.append(TitleDetailPair(title: "Title 1", detail: "Detail 1"))
-        dataSource.append(TitleDetailPair(title: "Title 2", detail: "Detail 2"))
-        dataSource.append(TitleDetailPair(title: "Title 3", detail: "Detail 3"))
+//        dataSource.append(TitleDetailPair(title: "Title 1", detail: "Detail 1"))
+//        dataSource.append(TitleDetailPair(title: "Title 2", detail: "Detail 2"))
+//        dataSource.append(TitleDetailPair(title: "Title 3", detail: "Detail 3"))
     }
-    
-    // Why won't it recognize this?
-//    func toCurrentStr(_ arg: Any) -> String {
-//        let currency = arg as? Double ?? 0.0
-//        return currencyFromDouble(currency)
-//    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchStr = searchBar.text else {
@@ -64,6 +58,8 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         let url = "http://dev.markitondemand.com/Api/v2/Quote/json?symbol="+encodedSearchStr
+        
+        self.view.endEditing(true)
         
         tableSpinner.startAnimating()
         dataSource.removeAll()

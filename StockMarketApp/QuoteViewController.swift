@@ -9,17 +9,6 @@
 import UIKit
 import Alamofire
 
-enum QuoteError : Error {
-    case someError
-    
-    var description: String {
-        switch self {
-        case .someError:
-            return "Some Error"
-        }
-    }
-}
-
 
 class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
@@ -48,12 +37,12 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchStr = searchBar.text else {
-            simpleAlert(vc: self, title: "Please Enter Some Text To Search For", message: "text is nil", ackStr: "OK")
+            simpleAlert(vc: self, title: NSLocalizedString("Please Enter Some Text To Search For", comment: "Alert title"), message: NSLocalizedString("text is nil", comment: "Alert message"), ackStr: NSLocalizedString("OK", comment: "Alert button"))
             return
         }
         
         guard let encodedSearchStr = searchStr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-            simpleAlert(vc: self, title: "Failed to URL encode search string", message: "", ackStr: "OK")
+            simpleAlert(vc: self, title: NSLocalizedString("Failed to URL encode search string", comment: "Alert title"), message: "", ackStr: NSLocalizedString("OK", comment: "Alert button"))
             return
         }
         
@@ -95,34 +84,34 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
                 if let dict = JSON as? [String: Any] {
 
                     if let errorMessage = dict["Message"] as? String {
-                        simpleAlert(vc: self, title: "Error", message: errorMessage, ackStr: "OK")
+                        simpleAlert(vc: self, title: NSLocalizedString("Error", comment: "Alert title"), message: errorMessage, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                         
                     } else {
                         
-                        self.dataSource.append(TitleDetailPair(title: "Name", detail:safeString(dict["Name"])))
-                        self.dataSource.append(TitleDetailPair(title: "Symbol", detail:safeString(dict["Symbol"])))
-                        self.dataSource.append(TitleDetailPair(title: "LastPrice", detail:self.toCurrencyStr(dict["LastPrice"])))
-                        self.dataSource.append(TitleDetailPair(title: "Change", detail:self.toCurrencyStr(dict["Change"])))
-                        self.dataSource.append(TitleDetailPair(title: "Change %", detail:self.toPercentStr(dict["ChangePercent"])))
-                        self.dataSource.append(TitleDetailPair(title: "Timestamp", detail:safeString(dict["Timestamp"])))
-                        self.dataSource.append(TitleDetailPair(title: "MSDate", detail:toDoubleStr(dict["MSDate"])))
-                        self.dataSource.append(TitleDetailPair(title: "MarketCap", detail:self.toCurrencyStr(dict["MarketCap"])))
-                        self.dataSource.append(TitleDetailPair(title: "Volume", detail:anyToIntString(dict["Volume"])))
-                        self.dataSource.append(TitleDetailPair(title: "Change YTD", detail:self.toCurrencyStr(dict["ChangeYTD"])))
-                        self.dataSource.append(TitleDetailPair(title: "Change % YTD", detail:self.toPercentStr(dict["ChangePercentYTD"])))
-                        self.dataSource.append(TitleDetailPair(title: "High", detail:self.toCurrencyStr(dict["High"])))
-                        self.dataSource.append(TitleDetailPair(title: "Low", detail:self.toCurrencyStr(dict["Low"])))
-                        self.dataSource.append(TitleDetailPair(title: "Open", detail:self.toCurrencyStr(dict["Open"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("Name", comment:"Title of stock quote field"), detail:safeString(dict["Name"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("Symbol", comment:"Title of stock quote field"), detail:safeString(dict["Symbol"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("LastPrice", comment:"Title of stock quote field"), detail:self.toCurrencyStr(dict["LastPrice"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("Change", comment:"Title of stock quote field"), detail:self.toCurrencyStr(dict["Change"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("Change %", comment:"Title of stock quote field"), detail:self.toPercentStr(dict["ChangePercent"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("Timestamp", comment:"Title of stock quote field"), detail:safeString(dict["Timestamp"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("MSDate", comment:"Title of stock quote field"), detail:toDoubleStr(dict["MSDate"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("MarketCap", comment:"Title of stock quote field"), detail:self.toCurrencyStr(dict["MarketCap"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("Volume", comment:"Title of stock quote field"), detail:anyToIntString(dict["Volume"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("Change YTD", comment:"Title of stock quote field"), detail:self.toCurrencyStr(dict["ChangeYTD"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("Change % YTD", comment:"Title of stock quote field"), detail:self.toPercentStr(dict["ChangePercentYTD"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("High", comment:"Title of stock quote field"), detail:self.toCurrencyStr(dict["High"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("Low", comment:"Title of stock quote field"), detail:self.toCurrencyStr(dict["Low"])))
+                        self.dataSource.append(TitleDetailPair(title: NSLocalizedString("Open", comment:"Title of stock quote field"), detail:self.toCurrencyStr(dict["Open"])))
 
                         self.tableView.reloadData()
                     }
                     
                 } else {
-                    simpleAlert(vc: self, title: "JSON Parse Error", message: "", ackStr: "OK")
+                    simpleAlert(vc: self, title: NSLocalizedString("JSON Parse Error", comment: "Alert title"), message: "", ackStr: NSLocalizedString("OK", comment: "Alert button"))
                 }
                 
             } else {
-                simpleAlert(vc: self, title: response.result.error?.localizedDescription ?? "Error", message: "", ackStr: "OK")
+                simpleAlert(vc: self, title: response.result.error?.localizedDescription ?? NSLocalizedString("Error", comment: "Default alert title"), message: "", ackStr: NSLocalizedString("OK", comment: "Alert button"))
             }
         }
     }

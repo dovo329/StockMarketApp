@@ -62,15 +62,36 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
             return
         }
         
-        guard let encodedSearchStr = searchStr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-            simpleAlert(vc: self, title: NSLocalizedString("Failed to URL encode search string", comment: "Alert title"), message: "", ackStr: NSLocalizedString("OK", comment: "Alert button"))
+        doLookup(searchText: searchStr,
+                 completion:
+            {
+                (alert: (title: String, message: String)?) -> Void in
+                if let alert = alert {
+                    simpleAlert(vc: self, title: alert.title, message: alert.message, ackStr: NSLocalizedString("OK", comment: "Alert button"))
+                    return
+                }
+                print("Successful")
+            }
+        )
+    }
+    
+    func doLookup(searchText: String, completion: @escaping (_ alert: (String, String)?) -> Void) {
+        
+//        completion(nil)
+//        return
+        
+//        completion((title: "Test completion title", message: "Test completion message"))
+//        return
+        
+        guard let encodedSearchStr = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+            completion((title: NSLocalizedString("Failed to URL encode search string", comment: "Alert title"), message: ""))
             return
         }
         
         let lookupURLStr = BaseURLStr + "Lookup/json?input=" + encodedSearchStr
         
         guard let lookupURL = URL(string: lookupURLStr) else {
-            simpleAlert(vc: self, title: NSLocalizedString("String to URL conversion failed", comment: "Alert title"), message: "", ackStr: NSLocalizedString("OK", comment: "Alert button"))
+            completion((title: NSLocalizedString("String to URL conversion failed", comment: "Alert title"), message: ""))
             return
         }
         var request = URLRequest(url:lookupURL);
@@ -81,41 +102,48 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         
         spinner.startAnimating()
         let task = URLSession.shared.dataTask(with: request, completionHandler:{ (data: Data?, response: URLResponse?, error: Error?) -> Void in
-        
+            
             DispatchQueue.main.async( execute: {
                 self.spinner.stopAnimating()
-            
+                
                 if let error = error {
-                    simpleAlert(vc: self, title: NSLocalizedString("Error", comment: "Alert title"), message: error.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
+                    completion((title: NSLocalizedString("Error", comment: "Alert title"), message: error.localizedDescription))
                     return
                 }
-
+                
                 let parseErrorTitle = NSLocalizedString("Parse Error", comment: "Alert title");
                 do {
                     try self.parseData(data)
                     
                 } catch ParseError.nilData {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.nilData.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
+                    completion((title: parseErrorTitle, message: ParseError.nilData.localizedDescription))
+                    return
                     
                 } catch ParseError.responseString {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseString.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
+                    completion((title: parseErrorTitle, message: ParseError.responseString.localizedDescription))
+                    return
                     
                 } catch ParseError.json {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.json.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
+                    completion((title: parseErrorTitle, message: ParseError.json.localizedDescription))
+                    return
                     
                 } catch ParseError.responseType {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.responseType.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
+                    completion((title: parseErrorTitle, message: ParseError.responseType.localizedDescription))
+                    return
                     
                 } catch ParseError.noResults {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.noResults.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
+                    completion((title: parseErrorTitle, message: ParseError.noResults.localizedDescription))
+                    return
                     
                 } catch ParseError.invalidResponseDict {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: ParseError.invalidResponseDict.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
+                    completion((title: parseErrorTitle, message: ParseError.invalidResponseDict.localizedDescription))
+                    return
                     
                 } catch {
-                    simpleAlert(vc: self, title: parseErrorTitle, message: error.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
+                    completion((title: parseErrorTitle, message: error.localizedDescription))
+                    return
                 }
-
+                
             })
         })
         
@@ -168,7 +196,6 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
 
             throw ParseError.noResults
         }
-
         
         if let dict = responseArr[0] as? [String: String] {
 

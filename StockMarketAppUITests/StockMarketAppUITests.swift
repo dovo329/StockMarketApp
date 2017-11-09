@@ -42,11 +42,13 @@ class StockMarketAppUITests: XCTestCase {
         // could first wait for spinner to appear then disappear to know when it's done loading
         sleep(1)
         
-        let symbolLbl = app.staticTexts["Symbol: LLL"]
+        let symbolLbl = app.staticTexts["LookupVC SymbolLbl"]
         let companyNameLbl = app.staticTexts["Company Name: L3 Technologies Inc"]
         let exchangeLbl = app.staticTexts["Exchange: NYSE"]
         
+        
         XCTAssert(symbolLbl.exists, "Unexpected value for Symbol")
+        XCTAssertEqual(symbolLbl.label, "Symbol: LLL", "Wrong value for Symbol")
         XCTAssert(companyNameLbl.exists, "Unexpected value for Company Name")
         XCTAssert(exchangeLbl.exists, "Unexpected value for Exchange")
     }

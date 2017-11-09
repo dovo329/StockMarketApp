@@ -29,8 +29,26 @@ class StockMarketAppUITests: XCTestCase {
     }
     
     func testExample() {
+        
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        let lookupSymbolOrCompanyNameSearchField = app.searchFields["Lookup Symbol or Company Name"]
+        lookupSymbolOrCompanyNameSearchField.tap()
+        lookupSymbolOrCompanyNameSearchField.typeText("lll")
+        app.typeText("\r")
+        
+        // could first wait for spinner to appear then disappear to know when it's done loading
+        sleep(1)
+        
+        let symbolLbl = app.staticTexts["Symbol: LLL"]
+        let companyNameLbl = app.staticTexts["Company Name: L3 Technologies Inc"]
+        let exchangeLbl = app.staticTexts["Exchange: NYSE"]
+        
+        XCTAssert(symbolLbl.exists, "Unexpected value for Symbol")
+        XCTAssert(companyNameLbl.exists, "Unexpected value for Company Name")
+        XCTAssert(exchangeLbl.exists, "Unexpected value for Exchange")
     }
     
 }

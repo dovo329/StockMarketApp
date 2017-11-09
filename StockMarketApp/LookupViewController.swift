@@ -100,11 +100,11 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         // dismiss keyboard
         self.view.endEditing(true)
         
-        spinner.startAnimating()
+        spinner?.startAnimating()
         let task = URLSession.shared.dataTask(with: request, completionHandler:{ (data: Data?, response: URLResponse?, error: Error?) -> Void in
             
             DispatchQueue.main.async( execute: {
-                self.spinner.stopAnimating()
+                self.spinner?.stopAnimating()
                 
                 if let error = error {
                     completion((title: NSLocalizedString("Error", comment: "Alert title"), message: error.localizedDescription))
@@ -114,6 +114,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                 let parseErrorTitle = NSLocalizedString("Parse Error", comment: "Alert title");
                 do {
                     try self.parseData(data)
+                    completion(nil)
                     
                 } catch ParseError.nilData {
                     completion((title: parseErrorTitle, message: ParseError.nilData.localizedDescription))
@@ -143,7 +144,6 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                     completion((title: parseErrorTitle, message: error.localizedDescription))
                     return
                 }
-                
             })
         })
         
@@ -203,19 +203,19 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
             if let symbol = dict["Symbol"] {
                 symbolLblTxt += symbol
             }
-            self.symbolLbl.text = symbolLblTxt
+            self.symbolLbl?.text = symbolLblTxt
             
             var companyNameLblTxt = CompanyNameFieldPrefix;
             if let companyName = dict["Name"] {
                 companyNameLblTxt += companyName
             }
-            self.companyNameLbl.text = companyNameLblTxt
+            self.companyNameLbl?.text = companyNameLblTxt
             
             var exchangeLblTxt = ExchangeFieldPrefix;
             if let exchange = dict["Exchange"] {
                 exchangeLblTxt += exchange
             }
-            self.exchangeLbl.text = exchangeLblTxt
+            self.exchangeLbl?.text = exchangeLblTxt
 
         } else {
             throw ParseError.invalidResponseDict

@@ -75,7 +75,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         self.spinner.startAnimating()
         let task = URLSession.shared.dataTask(with: request as URLRequest) { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             
-            DispatchQueue.main.async( execute: {
+            DispatchQueue.main.async{
                 self.spinner.stopAnimating()
                 if let error = error {
                     simpleAlert(vc: self, title: NSLocalizedString("Error", comment: "Alert title"), message: error.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
@@ -87,7 +87,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
                 } catch {
                     simpleAlert(vc: self, title: NSLocalizedString("Error", comment: "Alert title"), message: error.localizedDescription, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                 }
-            })
+            }
         }
         task.resume()
     }

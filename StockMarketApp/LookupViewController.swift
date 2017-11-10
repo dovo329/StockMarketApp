@@ -50,21 +50,36 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
     
     func doLookup(searchText: String, completion: @escaping (_ alert: (String, String)?) -> Void) {
         
-//        completion(nil)
-//        return
-        
-//        completion((title: "Test completion title", message: "Test completion message"))
-//        return
-        
-        guard let encodedSearchStr = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-            completion((title: NSLocalizedString("Failed to URL encode search string", comment: "Alert title"), message: ""))
+        guard let url = URL(string: BaseURLStr + "Lookup/json") else {
+            completion((title: NSLocalizedString("Failed to create base URL", comment: "Alert title"), message: ""))
             return
         }
         
-        let lookupURLStr = BaseURLStr + "Lookup/json?input=" + encodedSearchStr
+//        guard let encodedSearchStr = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+//            completion((title: NSLocalizedString("Failed to URL encode search string", comment: "Alert title"), message: ""))
+//            return
+//        }
+//
+//        let urlParameters = ["input": "\(encodedSearchStr)"]
         
-        guard let lookupURL = URL(string: lookupURLStr) else {
-            completion((title: NSLocalizedString("String to URL conversion failed", comment: "Alert title"), message: ""))
+        let urlParameters = ["input": "\(searchText)"]
+        
+        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+            completion((title: NSLocalizedString("Failed to create components URL", comment: "Alert title"), message: ""))
+            return
+        }
+        let queryItems = urlParameters.flatMap({ URLQueryItem(name: $0.key, value: $0.value) })
+        components.queryItems = queryItems
+        
+//        let lookupURLStr = BaseURLStr + "Lookup/json?input=" + encodedSearchStr
+//
+//        guard let lookupURL = URL(string: lookupURLStr) else {
+//            completion((title: NSLocalizedString("String to URL conversion failed", comment: "Alert title"), message: ""))
+//            return
+//        }
+        
+        guard let lookupURL = components.url else {
+            completion((title: NSLocalizedString("Failed to create lookup URL", comment: "Alert title"), message: ""))
             return
         }
         var request = URLRequest(url:lookupURL);
@@ -98,26 +113,6 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                 }
             }
         })
-
-        // Caleb's way of doing it...
-//        guard let url = URL(string: baseURLString) else {
-//            completion([])
-//            return
-//        }
-//
-//        let urlParameters = ["state": "\(state)", "output": "json"]
-//
-//        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-//
-//        let queryItems = urlParameters.flatMap({ URLQueryItem(name: $0.key, value: $0.value) })
-//
-//        components?.queryItems = queryItems
-//
-//        guard let requestURL = components?.url else { completion([]); return }
-//
-//
-//        let dataTask = URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
-        
         task.resume()
     }
     

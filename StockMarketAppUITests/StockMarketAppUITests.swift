@@ -37,15 +37,36 @@ class StockMarketAppUITests: XCTestCase {
         let lookupSymbolOrCompanyNameSearchField = app.searchFields["Lookup Symbol or Company Name"]
         lookupSymbolOrCompanyNameSearchField.tap()
         lookupSymbolOrCompanyNameSearchField.typeText("LLL")
+        
+        let spinner = app.activityIndicators["In progress"]
+        
+//        if (spinner.exists) {
+//            print("spinner shown")
+//        } else {
+//            print("spinner hidden")
+//        }
+        
+        XCTAssert(!spinner.exists)
         app.typeText("\r")
         
-        // could first wait for spinner to appear then disappear to know when it's done loading
         sleep(1)
+//        expectation(for: NSPredicate(format: "exists == true"), evaluatedWith: spinner, handler: nil)
+//        waitForExpectations(timeout: 5.0) { (error: Error?) in
+//            if let error = error {
+//                XCTFail("Error waiting for spinner to be shown \(error)")
+//            }
+//        }
+        
+        expectation(for: NSPredicate(format: "exists == false"), evaluatedWith: spinner, handler: nil)
+        waitForExpectations(timeout: 5.0) { (error: Error?) in
+            if let error = error {
+                XCTFail("Error waiting for spinner to be hidden \(error)")
+            }
+        }
         
         let symbolLbl = app.staticTexts["LookupVC SymbolLbl 2"]
         let companyNameLbl = app.staticTexts["LookupVC CompanyNameLbl"]
         let exchangeLbl = app.staticTexts["LookupVC ExchangeLbl"]
-        
         
         XCTAssert(symbolLbl.exists, "Couldn't find Symbol Label")
         XCTAssertEqual(symbolLbl.value as! String, "Symbol: LLL", "Wrong value for Symbol")

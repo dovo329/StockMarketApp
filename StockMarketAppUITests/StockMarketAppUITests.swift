@@ -36,21 +36,25 @@ class StockMarketAppUITests: XCTestCase {
         let app = XCUIApplication()
         let lookupSymbolOrCompanyNameSearchField = app.searchFields["Lookup Symbol or Company Name"]
         lookupSymbolOrCompanyNameSearchField.tap()
-        lookupSymbolOrCompanyNameSearchField.typeText("lll")
+        lookupSymbolOrCompanyNameSearchField.typeText("LLL")
         app.typeText("\r")
         
         // could first wait for spinner to appear then disappear to know when it's done loading
         sleep(1)
         
-        let symbolLbl = app.staticTexts["LookupVC SymbolLbl"]
-        let companyNameLbl = app.staticTexts["Company Name: L3 Technologies Inc"]
-        let exchangeLbl = app.staticTexts["Exchange: NYSE"]
+        let symbolLbl = app.staticTexts["LookupVC SymbolLbl 2"]
+        let companyNameLbl = app.staticTexts["LookupVC CompanyNameLbl"]
+        let exchangeLbl = app.staticTexts["LookupVC ExchangeLbl"]
         
         
-        XCTAssert(symbolLbl.exists, "Unexpected value for Symbol")
+        XCTAssert(symbolLbl.exists, "Couldn't find Symbol Label")
         XCTAssertEqual(symbolLbl.label, "Symbol: LLL", "Wrong value for Symbol")
-        XCTAssert(companyNameLbl.exists, "Unexpected value for Company Name")
-        XCTAssert(exchangeLbl.exists, "Unexpected value for Exchange")
+        
+        XCTAssert(companyNameLbl.exists, "Couldn't find Company Name Label")
+        XCTAssertEqual(companyNameLbl.label, "Company Name: L3 Technologies Inc", "Wrong value for Symbol")
+        
+        XCTAssert(exchangeLbl.exists, "Couldn't find Exchange Label")
+        XCTAssertEqual(exchangeLbl.label, "Exchange: NYSE")
     }
     
 }

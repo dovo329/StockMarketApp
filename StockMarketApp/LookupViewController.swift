@@ -51,6 +51,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         // the first thing I want to do is wait for the search bar to enter something
+        symbolLbl.accessibilityIdentifier = "LookupVC SymbolLbl 2"
     }
     
     // MARK: UISearchBarDelegate

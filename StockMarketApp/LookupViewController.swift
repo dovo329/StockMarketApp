@@ -201,7 +201,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
             throw ParseError.noResults
         }
         
-        throw ParseError.noResults.nsError()
+        //throw ParseError.noResults.nsError()
         //throw NSError(domain: Bundle.main.bundleIdentifier!, code: ParseError.noResults.rawValue, userInfo: [NSLocalizedDescriptionKey: ParseError.noResults.localizedDescription])
         
         if let dict = responseArr[0] as? [String: String] {

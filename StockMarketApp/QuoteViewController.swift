@@ -36,17 +36,34 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchStr = searchBar.text else {
+        guard let searchText = searchBar.text else {
             simpleAlert(vc: self, title: NSLocalizedString("Please Enter Some Text To Search For", comment: "Alert title"), message: NSLocalizedString("text is nil", comment: "Alert message"), ackStr: NSLocalizedString("OK", comment: "Alert button"))
             return
         }
         
-        guard let encodedSearchStr = searchStr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-            simpleAlert(vc: self, title: NSLocalizedString("Failed to URL encode search string", comment: "Alert title"), message: "", ackStr: NSLocalizedString("OK", comment: "Alert button"))
+        guard let baseUrl = URL(string: BaseURLStr) else {
+            simpleAlert(vc: self, title: NSLocalizedString("Failed to create base URL", comment: "Alert title"), message:"", ackStr: NSLocalizedString("OK", comment: "Alert button"))
+            return
+        }
+        guard var urlComponents = URLComponents(url: baseUrl, resolvingAgainstBaseURL: true) else {
+            simpleAlert(vc: self, title: NSLocalizedString("Failed to create components URL", comment: "Alert title"), message:"", ackStr: NSLocalizedString("OK", comment: "Alert button"))
+            return
+        }
+        urlComponents.path += "Quote/json"
+        let urlParameters = ["symbol": "\(searchText)"]
+        let queryItems = urlParameters.flatMap({ URLQueryItem(name: $0.key, value: $0.value) })
+        urlComponents.queryItems = queryItems
+        guard let quoteURL = urlComponents.url else {
+            simpleAlert(vc: self, title: NSLocalizedString("Failed to create quote URL", comment: "Alert title"), message:"", ackStr: NSLocalizedString("OK", comment: "Alert button"))
             return
         }
         
-        let url = BaseURLStr + "Quote/json?symbol="+encodedSearchStr
+//        guard let encodedSearchStr = searchStr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+//            simpleAlert(vc: self, title: NSLocalizedString("Failed to URL encode search string", comment: "Alert title"), message: "", ackStr: NSLocalizedString("OK", comment: "Alert button"))
+//            return
+//        }
+//
+//        let url = BaseURLStr + "Quote/json?symbol="+encodedSearchStr
         
         self.view.endEditing(true)
         
@@ -56,7 +73,7 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableSpinner.startAnimating()
         dataSource.removeAll()
         self.tableView.reloadData()
-        Alamofire.request(url).responseJSON { response in
+        Alamofire.request(quoteURL).responseJSON { response in
             self.tableSpinner.stopAnimating()
 //            print(response.request)  // original URL request
 //            print(response.response) // HTTP URL response
@@ -65,7 +82,7 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             if let JSON = response.result.value {
                 
-                print("JSON: \(JSON)")
+                //print("JSON: \(JSON)")
                 // this is example of what I get back:
 //                {
 //                    "Status": "SUCCESS",

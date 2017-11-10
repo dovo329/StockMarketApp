@@ -43,7 +43,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                     simpleAlert(vc: self, title: alert.title, message: alert.message, ackStr: NSLocalizedString("OK", comment: "Alert button"))
                     return
                 }
-                print("Successful")
+                //print("Successful")
             }
         )
     }
@@ -56,7 +56,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
 //        completion((title: "Test completion title", message: "Test completion message"))
 //        return
         
-        guard let encodedSearchStr = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+        guard let encodedSearchStr = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             completion((title: NSLocalizedString("Failed to URL encode search string", comment: "Alert title"), message: ""))
             return
         }
@@ -81,7 +81,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         spinner?.startAnimating()
         let task = URLSession.shared.dataTask(with: request, completionHandler:{ (data: Data?, response: URLResponse?, error: Error?) -> Void in
             
-            DispatchQueue.main.async( execute: {
+            DispatchQueue.main.async {
                 self.spinner?.stopAnimating()
                 
                 if let error = error {
@@ -89,15 +89,14 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                     return
                 }
                 
-                let parseErrorTitle = NSLocalizedString("Parse Error", comment: "Alert title");
                 do {
                     try self.parseData(data)
                     completion(nil)
                     
                 } catch {
-                    completion((title: parseErrorTitle, message: error.localizedDescription))
+                    completion((title: NSLocalizedString("Parse Error", comment: "Alert title"), message: error.localizedDescription))
                 }
-            })
+            }
         })
 
         // Caleb's way of doing it...
@@ -178,21 +177,18 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                 symbolLblTxt += symbol
             }
             self.symbolLbl?.text = symbolLblTxt
-            //self.symbolLbl?.accessibilityValue = symbolLblTxt
             
             var companyNameLblTxt = CompanyNameFieldPrefix;
             if let companyName = dict["Name"] {
                 companyNameLblTxt += companyName
             }
             self.companyNameLbl?.text = companyNameLblTxt
-            //self.companyNameLbl.accessibilityValue = companyNameLblTxt
             
             var exchangeLblTxt = ExchangeFieldPrefix;
             if let exchange = dict["Exchange"] {
                 exchangeLblTxt += exchange
             }
             self.exchangeLbl?.text = exchangeLblTxt
-            //self.exchangeLbl.accessibilityValue = exchangeLblTxt
 
         } else {
             throw ParseError.invalidResponseDict.nsError()
@@ -201,12 +197,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
     
     func clearUI() {
         self.symbolLbl.text = SymbolFieldPrefix
-        //self.symbolLbl.accessibilityValue = SymbolFieldPrefix
-        
         self.companyNameLbl.text = CompanyNameFieldPrefix
-        //self.companyNameLbl.accessibilityValue = CompanyNameFieldPrefix
-        
         self.exchangeLbl.text = ExchangeFieldPrefix
-        //self.exchangeLbl.accessibilityValue = ExchangeFieldPrefix
     }
 }

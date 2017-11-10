@@ -35,7 +35,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WKT-gR-HI2">
                                 <rect key="frame" x="16" y="100" width="288" height="403"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symbol: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDf-3V-mWU" userLabel="Symbol">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symbol: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDf-3V-mWU" userLabel="Symbol" customClass="LabelAutoUpdateAccessibilityValue" customModule="StockMarketApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="134.5"/>
                                         <accessibility key="accessibilityConfiguration" identifier="LookupVC SymbolLbl" label="Stock Symbol">
                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
@@ -44,7 +44,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6QC-Qn-sT2" userLabel="Company Name">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6QC-Qn-sT2" userLabel="Company Name" customClass="LabelAutoUpdateAccessibilityValue" customModule="StockMarketApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="134.5" width="288" height="134"/>
                                         <accessibility key="accessibilityConfiguration" identifier="LookupVC CompanyNameLbl" label="Company Name">
                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
@@ -53,7 +53,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAy-1P-n8n" userLabel="Exchange">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAy-1P-n8n" userLabel="Exchange" customClass="LabelAutoUpdateAccessibilityValue" customModule="StockMarketApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="268.5" width="288" height="134.5"/>
                                         <accessibility key="accessibilityConfiguration" identifier="LookupVC ExchangeLbl" label="Stock Exchange">
                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>

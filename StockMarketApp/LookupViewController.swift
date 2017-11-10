@@ -42,9 +42,9 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
     //http://dev.markitondemand.com/Api/v2/Lookup/json?input=Microsoft
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var symbolLbl: UILabel!
-    @IBOutlet weak var companyNameLbl: UILabel!
-    @IBOutlet weak var exchangeLbl: UILabel!
+    @IBOutlet weak var symbolLbl: LabelAutoUpdateAccessibilityValue!
+    @IBOutlet weak var companyNameLbl: LabelAutoUpdateAccessibilityValue!
+    @IBOutlet weak var exchangeLbl: LabelAutoUpdateAccessibilityValue!
     
     
     override func viewDidLoad() {
@@ -101,6 +101,11 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         // dismiss keyboard
         self.view.endEditing(true)
         
+        if let isLoading = spinner?.isAnimating {
+            if isLoading {
+                return
+            }
+        }
         spinner?.startAnimating()
         let task = URLSession.shared.dataTask(with: request, completionHandler:{ (data: Data?, response: URLResponse?, error: Error?) -> Void in
             
@@ -205,21 +210,21 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                 symbolLblTxt += symbol
             }
             self.symbolLbl?.text = symbolLblTxt
-            self.symbolLbl?.accessibilityValue = symbolLblTxt
+            //self.symbolLbl?.accessibilityValue = symbolLblTxt
             
             var companyNameLblTxt = CompanyNameFieldPrefix;
             if let companyName = dict["Name"] {
                 companyNameLblTxt += companyName
             }
             self.companyNameLbl?.text = companyNameLblTxt
-            self.companyNameLbl.accessibilityValue = companyNameLblTxt
+            //self.companyNameLbl.accessibilityValue = companyNameLblTxt
             
             var exchangeLblTxt = ExchangeFieldPrefix;
             if let exchange = dict["Exchange"] {
                 exchangeLblTxt += exchange
             }
             self.exchangeLbl?.text = exchangeLblTxt
-            self.exchangeLbl.accessibilityValue = exchangeLblTxt
+            //self.exchangeLbl.accessibilityValue = exchangeLblTxt
 
         } else {
             throw ParseError.invalidResponseDict
@@ -228,12 +233,12 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
     
     func clearUI() {
         self.symbolLbl.text = SymbolFieldPrefix
-        self.symbolLbl.accessibilityValue = SymbolFieldPrefix
+        //self.symbolLbl.accessibilityValue = SymbolFieldPrefix
         
         self.companyNameLbl.text = CompanyNameFieldPrefix
-        self.companyNameLbl.accessibilityValue = CompanyNameFieldPrefix
+        //self.companyNameLbl.accessibilityValue = CompanyNameFieldPrefix
         
         self.exchangeLbl.text = ExchangeFieldPrefix
-        self.exchangeLbl.accessibilityValue = ExchangeFieldPrefix
+        //self.exchangeLbl.accessibilityValue = ExchangeFieldPrefix
     }
 }

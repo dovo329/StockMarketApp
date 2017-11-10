@@ -10,6 +10,7 @@
 		67A41CCA02E3B02AA386880A /* Pods_StockMarketAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049BCE5B899DF1BF3B9C3A06 /* Pods_StockMarketAppTests.framework */; };
 		9D4FCEE05A1E06419B6E6AD2 /* Pods_StockMarketAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF45DE539FE4A877C134F69 /* Pods_StockMarketAppUITests.framework */; };
 		A54AC03E1FB36BDC00E44219 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54AC03D1FB36BDC00E44219 /* GraphView.swift */; };
+		A54AC0401FB530D100E44219 /* LabelAutoUpdateAccessibilityValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54AC03F1FB530D100E44219 /* LabelAutoUpdateAccessibilityValue.swift */; };
 		A54E15641DF36D54000BAC70 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E15631DF36D54000BAC70 /* Utils.swift */; };
 		A5765CB41DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5765CB21DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.swift */; };
 		A5765CB51DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5765CB31DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.xib */; };
@@ -50,6 +51,7 @@
 		529843FBB681A0C87A75A3DB /* Pods-StockMarketApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketApp/Pods-StockMarketApp.release.xcconfig"; sourceTree = "<group>"; };
 		90787A102D679984CBE492F9 /* Pods-StockMarketAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockMarketAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StockMarketAppUITests/Pods-StockMarketAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A54AC03D1FB36BDC00E44219 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		A54AC03F1FB530D100E44219 /* LabelAutoUpdateAccessibilityValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAutoUpdateAccessibilityValue.swift; sourceTree = "<group>"; };
 		A54E15631DF36D54000BAC70 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A5765CB21DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftTitleRightDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A5765CB31DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftTitleRightDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		A5765CB61DEF197E00DACC0F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A54AC03F1FB530D100E44219 /* LabelAutoUpdateAccessibilityValue.swift */,
 				A5765CB21DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.swift */,
 				A5765CB31DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.xib */,
 			);
@@ -472,6 +475,7 @@
 				A5765CB41DEF197900DACC0F /* LeftTitleRightDetailTableViewCell.swift in Sources */,
 				A5DD63801DD8068E009B32B6 /* QuoteViewController.swift in Sources */,
 				A54AC03E1FB36BDC00E44219 /* GraphView.swift in Sources */,
+				A54AC0401FB530D100E44219 /* LabelAutoUpdateAccessibilityValue.swift in Sources */,
 				A5DD63821DD8069B009B32B6 /* ChartViewController.swift in Sources */,
 				A5DD637D1DD8066A009B32B6 /* LookupViewController.swift in Sources */,
 				A5DD634F1DD8062C009B32B6 /* AppDelegate.swift in Sources */,

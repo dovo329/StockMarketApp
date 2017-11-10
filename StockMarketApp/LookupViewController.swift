@@ -205,39 +205,35 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                 symbolLblTxt += symbol
             }
             self.symbolLbl?.text = symbolLblTxt
-            self.symbolLbl?.accessibilityLabel = symbolLblTxt
+            self.symbolLbl?.accessibilityValue = symbolLblTxt
             
             var companyNameLblTxt = CompanyNameFieldPrefix;
             if let companyName = dict["Name"] {
                 companyNameLblTxt += companyName
             }
             self.companyNameLbl?.text = companyNameLblTxt
-            self.companyNameLbl.accessibilityLabel = companyNameLblTxt
+            self.companyNameLbl.accessibilityValue = companyNameLblTxt
             
             var exchangeLblTxt = ExchangeFieldPrefix;
             if let exchange = dict["Exchange"] {
                 exchangeLblTxt += exchange
             }
             self.exchangeLbl?.text = exchangeLblTxt
-            self.exchangeLbl.accessibilityLabel = exchangeLblTxt
+            self.exchangeLbl.accessibilityValue = exchangeLblTxt
 
         } else {
             throw ParseError.invalidResponseDict
         }
     }
     
-    let SymbolLblAccessibilityValue = "Symbol Label"
-    let CompanyNameLblAccessibilityValue = "Company Name Label"
-    let ExchangeLblAccessiblityValue = "Exchange Label"
-    
     func clearUI() {
         self.symbolLbl.text = SymbolFieldPrefix
-        self.symbolLbl.accessibilityLabel = SymbolFieldPrefix
+        self.symbolLbl.accessibilityValue = SymbolFieldPrefix
         
         self.companyNameLbl.text = CompanyNameFieldPrefix
-        self.companyNameLbl.accessibilityLabel = CompanyNameFieldPrefix
+        self.companyNameLbl.accessibilityValue = CompanyNameFieldPrefix
         
         self.exchangeLbl.text = ExchangeFieldPrefix
-        self.exchangeLbl.accessibilityLabel = ExchangeFieldPrefix
+        self.exchangeLbl.accessibilityValue = ExchangeFieldPrefix
     }
 }

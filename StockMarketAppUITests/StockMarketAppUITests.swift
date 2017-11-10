@@ -48,13 +48,13 @@ class StockMarketAppUITests: XCTestCase {
         
         
         XCTAssert(symbolLbl.exists, "Couldn't find Symbol Label")
-        XCTAssertEqual(symbolLbl.label, "Symbol: LLL", "Wrong value for Symbol")
+        XCTAssertEqual(symbolLbl.value as! String, "Symbol: LLL", "Wrong value for Symbol")
         
         XCTAssert(companyNameLbl.exists, "Couldn't find Company Name Label")
-        XCTAssertEqual(companyNameLbl.label, "Company Name: L3 Technologies Inc", "Wrong value for Symbol")
+        XCTAssertEqual(companyNameLbl.value as! String, "Company Name: L3 Technologies Inc", "Wrong value for Symbol")
         
         XCTAssert(exchangeLbl.exists, "Couldn't find Exchange Label")
-        XCTAssertEqual(exchangeLbl.label, "Exchange: NYSE")
+        XCTAssertEqual(exchangeLbl.value as! String, "Exchange: NYSE")
     }
     
 }

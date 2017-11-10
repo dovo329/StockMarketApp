@@ -179,26 +179,25 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
          */
         
         guard let safeData = data else {
-            throw ParseError.nilData
+            throw ParseError.nilData.nsError()
         }
         
         let jsonObj : Any
         do {
             try jsonObj = JSONSerialization.jsonObject(with: safeData, options: [])
             
-        //} catch let error as NSError {
         } catch {
             throw error
         }
         
         guard let responseArr = jsonObj as? [Any] else {
-            throw ParseError.responseType
+            throw ParseError.responseType.nsError()
         }
         
         if (responseArr.count == 0) {
             clearUI()
 
-            throw ParseError.noResults
+            throw ParseError.noResults.nsError()
         }
         
         //throw ParseError.noResults.nsError()
@@ -228,7 +227,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
             //self.exchangeLbl.accessibilityValue = exchangeLblTxt
 
         } else {
-            throw ParseError.invalidResponseDict
+            throw ParseError.invalidResponseDict.nsError()
         }
     }
     

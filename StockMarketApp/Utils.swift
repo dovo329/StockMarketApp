@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-let BaseURLStr : String = "http://dev.markitondemand.com/Api/v2/";
-
 func simpleAlert(vc: UIViewController, title: String, message: String, ackStr: String) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     let okAction = UIAlertAction(title: ackStr, style: UIAlertActionStyle.default, handler:nil)

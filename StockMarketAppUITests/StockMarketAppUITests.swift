@@ -49,7 +49,7 @@ class StockMarketAppUITests: XCTestCase {
         XCTAssert(!spinner.exists)
         app.typeText("\r")
         
-        sleep(1)
+        Thread.sleep(forTimeInterval: 0.5)
 //        expectation(for: NSPredicate(format: "exists == true"), evaluatedWith: spinner, handler: nil)
 //        waitForExpectations(timeout: 5.0) { (error: Error?) in
 //            if let error = error {

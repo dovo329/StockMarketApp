@@ -34,6 +34,10 @@ enum ParseError : Int, Error {
             return NSLocalizedString("Invalid Response Dict", comment: "Parse Error")
         }
     }
+    
+    func nsError() -> NSError {
+        return NSError(domain: Bundle.main.bundleIdentifier!, code: self.rawValue, userInfo: [NSLocalizedDescriptionKey: self.localizedDescription])
+    }
 }
 
 class LookupViewController: UIViewController, UISearchBarDelegate {
@@ -127,6 +131,25 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                 }
             })
         })
+
+        // Caleb's way of doing it...
+//        guard let url = URL(string: baseURLString) else {
+//            completion([])
+//            return
+//        }
+//
+//        let urlParameters = ["state": "\(state)", "output": "json"]
+//
+//        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+//
+//        let queryItems = urlParameters.flatMap({ URLQueryItem(name: $0.key, value: $0.value) })
+//
+//        components?.queryItems = queryItems
+//
+//        guard let requestURL = components?.url else { completion([]); return }
+//
+//
+//        let dataTask = URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
         
         task.resume()
     }
@@ -178,8 +201,8 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
             throw ParseError.noResults
         }
         
-        //throw ParseError.noResults
-        throw NSError(domain: Bundle.main.bundleIdentifier!, code: ParseError.noResults.rawValue, userInfo: [NSLocalizedDescriptionKey: ParseError.noResults.localizedDescription])
+        throw ParseError.noResults.nsError()
+        //throw NSError(domain: Bundle.main.bundleIdentifier!, code: ParseError.noResults.rawValue, userInfo: [NSLocalizedDescriptionKey: ParseError.noResults.localizedDescription])
         
         if let dict = responseArr[0] as? [String: String] {
 

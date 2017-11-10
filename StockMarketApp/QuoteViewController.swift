@@ -50,6 +50,9 @@ class QuoteViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.view.endEditing(true)
         
+        if tableSpinner.isAnimating {
+            return
+        }
         tableSpinner.startAnimating()
         dataSource.removeAll()
         self.tableView.reloadData()

@@ -69,7 +69,9 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
 //        })
 //
 //        dataTask.resume()
-        
+        if self.spinner.isAnimating {
+            return
+        }
         self.spinner.startAnimating()
         let task = URLSession.shared.dataTask(with: request as URLRequest) { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             

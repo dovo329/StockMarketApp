@@ -25,50 +25,55 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
             return;
         }
         
-        let urlStr = BaseURLStr + "InteractiveChart/json?" +
-        "parameters={" +
-            "\"Normalized\":false," +
-            "\"NumberOfDays\":365," +
-            "\"DataPeriod\":\"Day\"," +
-            "\"Elements\":[{" +
-            "\"Symbol\":\"LLL\"," +
-            "\"Type\":\"price\"," +
-            "\"Params\":[\"c\"]}]}"
-        
-        guard let urlPercentEncodedStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed), let url = URL(string: urlPercentEncodedStr) else {
-            simpleAlert(vc: self, title: NSLocalizedString("Error", comment: "Alert title"), message: NSLocalizedString("Could not make url", comment: "Alert message"), ackStr: NSLocalizedString("OK", comment: "Alert button"))
-            return;
+        guard let baseUrl = URL(string: BaseURLStr) else {
+            simpleAlert(vc: self, title: NSLocalizedString("Failed to create base URL", comment: "Alert title"), message:"", ackStr: NSLocalizedString("OK", comment: "Alert button"))
+            return
         }
-        //var request = URLRequest(url: url);
-        //request.httpMethod = "GET"
+        guard var urlComponents = URLComponents(url: baseUrl, resolvingAgainstBaseURL: true) else {
+            simpleAlert(vc: self, title: NSLocalizedString("Failed to create components URL", comment: "Alert title"), message:"", ackStr: NSLocalizedString("OK", comment: "Alert button"))
+            return
+        }
+        urlComponents.path += "InteractiveChart/json"
+        // could I do a JSON serialization of a dictionary here?
+        // Probably, and I should
+        let elementsDict: [String: Any] =
+        [
+            "Symbol": searchText,
+            "Type": "price",
+            "Params": ["c"]
+        ]
+        let queryParamsDict: [String: Any] =
+        [
+            "Normalized": "false",
+            "NumberOfDays": 365,
+            "DataPeriod": "Day",
+            "Elements": [elementsDict]
+        ]
+        
+        let queryData: Data
+        do {
+            queryData = try JSONSerialization.data(withJSONObject: queryParamsDict, options: JSONSerialization.WritingOptions(rawValue: 0))
+        } catch {
+            simpleAlert(vc: self, title: NSLocalizedString("Failed to create JSON data", comment: "Alert title"), message:"", ackStr: NSLocalizedString("OK", comment: "Alert button"))
+            return
+        }
+        guard let queryStr = String(data: queryData, encoding: String.Encoding.utf8) else {
+            simpleAlert(vc: self, title: NSLocalizedString("Failed to create JSON string", comment: "Alert title"), message:"", ackStr: NSLocalizedString("OK", comment: "Alert button"))
+            return
+        }
+
+        let urlParameters = ["parameters": queryStr]
+        let queryItems = urlParameters.flatMap({ URLQueryItem(name: $0.key, value: $0.value) })
+        urlComponents.queryItems = queryItems
+        guard let chartURL = urlComponents.url else {
+            simpleAlert(vc: self, title: NSLocalizedString("Failed to create quote URL", comment: "Alert title"), message:"", ackStr: NSLocalizedString("OK", comment: "Alert button"))
+            return
+        }
+        var request = URLRequest(url:chartURL);
+        request.httpMethod = "GET"
         
         //dismiss keyboard
         self.view.endEditing(true)
-        
-        // http%3A%2F%2Fdev.markitondemand.com%2FApi%2Fv2%2FInteractiveChart%2Fjson%3F
-        
-        //parameters=%7B%22Normalized%22%3Afalse,%22NumberOfDays%22%3A365,%22DataPeriod%22%3A%22Day%22,%22Elements%22%3A%5B%7B%22Symbol%22%3A%22LLL%22,%22Type%22%3A%22price%22,%22Params%22%3A%5B%22c%22%5D%7D%5D%7D, NSErrorFailingURLKey=http%3A%2F%2Fdev.markitondemand.com%2FApi%2Fv2%2FInteractiveChart%2Fjson%3Fparameters=%7B%22Normalized%22%3Afalse,%22NumberOfDays%22%3A365,%22DataPeriod%22%3A%22Day%22,%22Elements%22%3A%5B%7B%22Symbol%22%3A%22LLL%22,%22Type%22%3A%22price%22,%22Params%22%3A%5B%22c%22%5D%7D%5D%7D
-        
-//        let headers = [
-//            "cache-control": "no-cache",
-//            "postman-token": "6921a2aa-319b-c544-297c-314d5e93dc7c"
-//        ]
-//
-        let request = NSMutableURLRequest(url: URL(string: BaseURLStr + "InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A365%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22"+searchText+"%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D")!)
-        request.httpMethod = "GET"
-//        request.allHTTPHeaderFields = headers
-//
-//        let session = NSURLSession.sharedSession()
-//        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-//            if (error != nil) {
-//                println(error)
-//            } else {
-//                let httpResponse = response as? NSHTTPURLResponse
-//                println(httpResponse)
-//            }
-//        })
-//
-//        dataTask.resume()
         if self.spinner.isAnimating {
             return
         }
@@ -131,6 +136,8 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         guard let safeData = data else {
             throw ParseError.nilData.nsError()
         }
+        
+        let responseStr = String(data: safeData, encoding: .utf8)
         
         let jsonObj : Any
         do {

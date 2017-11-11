@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ParseError : Int, Error {
+enum ParseError : Int, CustomNSError, LocalizedError {
     // raw value is the error code
     case nilData = 0
     case responseString
@@ -17,7 +17,7 @@ enum ParseError : Int, Error {
     case noResults
     case invalidResponseDict
     
-    var localizedDescription: String {
+    var errorDescription: String {
         switch self {
         case .nilData:
             return NSLocalizedString("Nil Data", comment: "Parse Error")
@@ -32,6 +32,18 @@ enum ParseError : Int, Error {
         case .invalidResponseDict:
             return NSLocalizedString("Invalid Response Dict", comment: "Parse Error")
         }
+    }
+    
+    var errorDomain: String {
+        return Bundle.main.bundleIdentifier! + ".ParseError"
+    }
+    
+    var errorCode: Int {
+        return self.rawValue
+    }
+    
+    var errorUserInfo: [String : Any] {
+        return [NSLocalizedDescriptionKey: self.errorDescription]
     }
     
     func nsError() -> NSError {

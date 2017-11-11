@@ -46,7 +46,7 @@ enum ParseError : Int, CustomNSError, LocalizedError {
         return [NSLocalizedDescriptionKey: self.errorDescription]
     }
     
-    func nsError() -> NSError {
-        return NSError(domain: Bundle.main.bundleIdentifier! + ".ParseError", code: self.rawValue, userInfo: [NSLocalizedDescriptionKey: self.localizedDescription])
-    }
+//    func nsError() -> NSError {
+//        return NSError(domain: Bundle.main.bundleIdentifier! + ".ParseError", code: self.rawValue, userInfo: [NSLocalizedDescriptionKey: self.localizedDescription])
+//    }
 }

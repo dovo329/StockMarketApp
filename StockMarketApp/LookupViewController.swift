@@ -107,6 +107,9 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
                     completion(nil)
                     
                 } catch {
+                    //let nsError = error as NSError
+                    // need this to get at code and domain provided by the CustomNSError protocol,
+                    // otherwise I only get the localizedDescription.  But that's all I need in this case
                     completion((title: NSLocalizedString("Parse Error", comment: "Alert title"), message: error.localizedDescription))
                 }
             }
@@ -139,7 +142,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
          */
         
         guard let safeData = data else {
-            throw ParseError.nilData.nsError()
+            throw ParseError.nilData
         }
         
         let jsonObj : Any
@@ -151,13 +154,13 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
         }
         
         guard let responseArr = jsonObj as? [Any] else {
-            throw ParseError.responseType.nsError()
+            throw ParseError.responseType
         }
         
         if (responseArr.count == 0) {
             clearUI()
 
-            throw ParseError.noResults.nsError()
+            throw ParseError.noResults
         }
         
         //throw ParseError.noResults.nsError()
@@ -184,7 +187,7 @@ class LookupViewController: UIViewController, UISearchBarDelegate {
             self.exchangeLbl?.text = exchangeLblTxt
 
         } else {
-            throw ParseError.invalidResponseDict.nsError()
+            throw ParseError.invalidResponseDict
         }
     }
     

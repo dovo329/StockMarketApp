@@ -134,7 +134,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         //    148.35,
         
         guard let safeData = data else {
-            throw ParseError.nilData.nsError()
+            throw ParseError.nilData
         }
         
         let responseStr = String(data: safeData, encoding: .utf8)
@@ -148,7 +148,7 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         
         guard let jsonDict = jsonObj as? [String: Any]
             else {
-                throw ParseError.responseType.nsError()
+                throw ParseError.responseType
         }
         
 //        guard let positionsArr = jsonDict["Positions"] as? [Double],
@@ -160,37 +160,37 @@ class ChartViewController: UIViewController, UISearchBarDelegate {
         
         guard let positionsArr = jsonDict["Positions"] as? [Double]
             else {
-                throw ParseError.invalidResponseDict.nsError()
+                throw ParseError.invalidResponseDict
         }
         
 //        guard let datesArr = jsonDict["Dates"] as? [String]
 //            else {
-//                throw ParseError.invalidResponseDict.nsError()
+//                throw ParseError.invalidResponseDict
 //        }
         
         guard let elementsArr = jsonDict["Elements"] as? [Any]
             else {
-                throw ParseError.invalidResponseDict.nsError()
+                throw ParseError.invalidResponseDict
         }
         
         guard let elementsDict = elementsArr.first as? [String: Any]
             else {
-                throw ParseError.invalidResponseDict.nsError()
+                throw ParseError.invalidResponseDict
         }
         
         guard let dataSeriesDict = elementsDict["DataSeries"] as? [String: Any]
             else {
-                throw ParseError.invalidResponseDict.nsError()
+                throw ParseError.invalidResponseDict
         }
      
         guard let closeDict = dataSeriesDict["close"] as? [String: Any]
             else {
-                throw ParseError.invalidResponseDict.nsError()
+                throw ParseError.invalidResponseDict
         }
         
         guard let valuesArr = closeDict["values"] as? [Double]
             else {
-                throw ParseError.invalidResponseDict.nsError()
+                throw ParseError.invalidResponseDict
         }
         
         // now I have positionsArr, datesArr, and valuesArr that I can use to make the graph
